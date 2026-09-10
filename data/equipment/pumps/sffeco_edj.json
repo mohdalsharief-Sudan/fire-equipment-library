@@ -1,0 +1,117 @@
+{
+  "category": "pumps/package_units",
+  "category_ar": "مجموعات مضخات ثلاثية (كهرباء + ديزل + جوكي)",
+  "equipment": [
+    {
+      "model": "EDJ-500-8",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 500,
+        "pressure_bar": 8,
+        "diesel_hp": 60,
+        "electric_hp": 50,
+        "jockey_hp": 5.5,
+        "jockey_gpm": 50,
+        "weight_kg": 1100,
+        "header_pipe": "6\"",
+        "dimensions_mm": {"width": 1700, "height": 1570, "length": 1740},
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 185000,
+      "certifications": ["UL", "FM"],
+      "applications": [
+        "Fire Hose Cabinet Systems",
+        "Automatic Sprinkler Systems",
+        "Fire Hydrant Systems"
+      ],
+      "notes": "مجموعة ثلاثية كاملة مع HMI Controller"
+    },
+    {
+      "model": "EDJ-750-8",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 750,
+        "pressure_bar": 8,
+        "diesel_hp": 85,
+        "electric_hp": 75,
+        "jockey_hp": 5.5,
+        "jockey_gpm": 50,
+        "weight_kg": 1440,
+        "header_pipe": "6\"",
+        "dimensions_mm": {"width": 1750, "height": 1650, "length": 1950},
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 225800,
+      "certifications": ["UL", "FM"],
+      "applications": [
+        "Fire Hose Cabinet Systems",
+        "Automatic Sprinkler Systems",
+        "Fire Hydrant Systems",
+        "Deluge Systems"
+      ],
+      "notes": "مجموعة ثلاثية كاملة مع HMI Controller"
+    },
+    {
+      "model": "EDJ-1000-9",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 1000,
+        "pressure_bar": 9,
+        "diesel_hp": 110,
+        "electric_hp": 100,
+        "jockey_hp": 5.5,
+        "jockey_gpm": 50,
+        "weight_kg": 1640,
+        "header_pipe": "6\"",
+        "dimensions_mm": {"width": 1800, "height": 1820, "length": 2100},
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 285000,
+      "certifications": ["UL", "FM"],
+      "applications": [
+        "Fire Hose Cabinet Systems",
+        "Automatic Sprinkler Systems",
+        "Fire Hydrant Systems",
+        "Deluge Systems"
+      ],
+      "notes": "مجموعة ثلاثية كاملة مع HMI Controller"
+    },
+    {
+      "model": "EDJ-1500-9",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 1500,
+        "pressure_bar": 9,
+        "diesel_hp": 150,
+        "electric_hp": 125,
+        "jockey_hp": 5.5,
+        "jockey_gpm": 50,
+        "weight_kg": 1800,
+        "header_pipe": "6\"",
+        "dimensions_mm": {"width": 1900, "height": 1900, "length": 2200},
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 350000,
+      "certifications": ["UL", "FM"],
+      "applications": [
+        "Fire Hose Cabinet Systems",
+        "Automatic Sprinkler Systems",
+        "Fire Hydrant Systems",
+        "Deluge Systems"
+      ],
+      "notes": "مجموعة ثلاثية كاملة مع HMI Controller - أكبر مجموعة"
+    }
+  ]
+}

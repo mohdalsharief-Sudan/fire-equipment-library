@@ -1,0 +1,62 @@
+{
+  "category": "pumps/jockey",
+  "category_ar": "مضخات الجوكي",
+  "equipment": [
+    {
+      "model": "JOCKEY-3HP",
+      "type": "jockey_vertical",
+      "specs": {
+        "power_hp": 3,
+        "flow_gpm": 17.6,
+        "pressure_bar": 10,
+        "type": "vertical_multistage",
+        "material": "stainless_steel_304",
+        "is_jockey": true
+      },
+      "price_sar": 4500,
+      "certifications": [],
+      "notes": "مضخة جوكي رأسية متعددة المراحل"
+    },
+    {
+      "model": "JOCKEY-5.5HP",
+      "type": "jockey_vertical",
+      "specs": {
+        "power_hp": 5.5,
+        "flow_gpm": 50,
+        "pressure_bar": 10,
+        "type": "vertical_multistage",
+        "material": "stainless_steel_304",
+        "is_jockey": true
+      },
+      "price_sar": 8250,
+      "certifications": [],
+      "notes": "مضخة جوكي رأسية متعددة المراحل"
+    },
+    {
+      "model": "JOCKEY-7.5HP",
+      "type": "jockey_vertical",
+      "specs": {
+        "power_hp": 7.5,
+        "flow_gpm": 60,
+        "pressure_bar": 10,
+        "type": "vertical_multistage",
+        "is_jockey": true
+      },
+      "price_sar": 11000,
+      "certifications": []
+    },
+    {
+      "model": "JOCKEY-10HP",
+      "type": "jockey_vertical",
+      "specs": {
+        "power_hp": 10,
+        "flow_gpm": 80,
+        "pressure_bar": 10,
+        "type": "vertical_multistage",
+        "is_jockey": true
+      },
+      "price_sar": 15000,
+      "certifications": []
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "category": "accessories/tanks",
+  "category_ar": "خزانات الديزل",
+  "equipment": [
+    {
+      "model": "TANK-500L",
+      "type": "diesel_tank",
+      "specs": {
+        "capacity_liters": 500,
+        "capacity_gallons": 132,
+        "construction": "horizontal_cylindrical",
+        "standard": "UL-142"
+      },
+      "price_sar": 8000,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "TANK-1000L",
+      "type": "diesel_tank",
+      "specs": {
+        "capacity_liters": 1000,
+        "capacity_gallons": 264,
+        "construction": "horizontal_cylindrical"
+      },
+      "price_sar": 14000,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "TANK-1500L",
+      "type": "diesel_tank",
+      "specs": {
+        "capacity_liters": 1500,
+        "capacity_gallons": 396,
+        "construction": "horizontal_cylindrical"
+      },
+      "price_sar": 19000,
+      "certifications": ["UL", "FM"]
+    }
+  ]
+}

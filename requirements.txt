@@ -1,0 +1,3 @@
+# Fire Equipment Library - Requirements
+sqlite3  # مدمج في Python
+# لا نحتاج مكتبات خارجية للبداية

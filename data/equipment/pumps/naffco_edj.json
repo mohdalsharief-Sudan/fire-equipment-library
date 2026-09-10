@@ -1,0 +1,83 @@
+{
+  "category": "pumps/package_units",
+  "category_ar": "مجموعات مضخات ثلاثية (NAFFCO)",
+  "equipment": [
+    {
+      "model": "NF-EDJ-500-8",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 500,
+        "pressure_bar": 8,
+        "diesel_hp": 60,
+        "electric_hp": 50,
+        "jockey_hp": 5.5,
+        "weight_kg": 1150,
+        "header_pipe": "6\"",
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 175750,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة ثلاثية - NAFFCO (أقل 5% من SFFECO)"
+    },
+    {
+      "model": "NF-EDJ-750-8",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 750,
+        "pressure_bar": 8,
+        "diesel_hp": 85,
+        "electric_hp": 75,
+        "jockey_hp": 5.5,
+        "weight_kg": 1480,
+        "header_pipe": "6\"",
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 214510,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "NF-EDJ-1000-9",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 1000,
+        "pressure_bar": 9,
+        "diesel_hp": 110,
+        "electric_hp": 100,
+        "jockey_hp": 5.5,
+        "weight_kg": 1700,
+        "header_pipe": "6\"",
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 270750,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "NF-EDJ-1500-9",
+      "type": "electrical_diesel_jockey",
+      "specs": {
+        "flow_gpm": 1500,
+        "pressure_bar": 9,
+        "diesel_hp": 150,
+        "electric_hp": 125,
+        "jockey_hp": 5.5,
+        "weight_kg": 1850,
+        "header_pipe": "6\"",
+        "includes_jockey": true,
+        "includes_controller": true,
+        "includes_diesel": true,
+        "is_complete_package": true
+      },
+      "price_sar": 332500,
+      "certifications": ["UL", "FM"]
+    }
+  ]
+}

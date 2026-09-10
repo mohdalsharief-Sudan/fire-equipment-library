@@ -1,0 +1,72 @@
+{
+  "category": "valves",
+  "category_ar": "الصمامات",
+  "equipment": [
+    {
+      "model": "GATE-4",
+      "type": "gate_valve",
+      "specs": {
+        "size_inch": 4,
+        "pressure_rating_psi": 300,
+        "material": "cast_iron",
+        "connection": "flanged"
+      },
+      "price_sar": 1200,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "GATE-6",
+      "type": "gate_valve",
+      "specs": {
+        "size_inch": 6,
+        "pressure_rating_psi": 300,
+        "material": "cast_iron"
+      },
+      "price_sar": 1800,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "CHECK-4",
+      "type": "check_valve",
+      "specs": {
+        "size_inch": 4,
+        "pressure_rating_psi": 300,
+        "material": "cast_iron"
+      },
+      "price_sar": 1500,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "BUTTERFLY-4",
+      "type": "butterfly_valve",
+      "specs": {
+        "size_inch": 4,
+        "pressure_rating_psi": 300,
+        "material": "cast_iron"
+      },
+      "price_sar": 900,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "RELIEF-ZUM-P4000A",
+      "type": "relief_valve",
+      "specs": {
+        "size_inch": 0.75,
+        "pressure_range_psi": "50-200",
+        "material": "cast_bronze"
+      },
+      "price_sar": 2500,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "AIR-RELEASE-0.5",
+      "type": "air_release_valve",
+      "specs": {
+        "size_inch": 0.5,
+        "application": "split_case_pumps"
+      },
+      "price_sar": 800,
+      "certifications": ["UL", "FM"]
+    }
+  ]
+}

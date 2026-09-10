@@ -1,0 +1,75 @@
+{
+  "category": "accessories/controllers",
+  "category_ar": "لوحات التحكم",
+  "equipment": [
+    {
+      "model": "CTRL-ELEC-250",
+      "type": "electric_controller",
+      "specs": {
+        "max_gpm": 250,
+        "voltage": "380-415V",
+        "phase": "3",
+        "standard": "NFPA 20"
+      },
+      "price_sar": 12000,
+      "certifications": ["UL", "FM"],
+      "notes": "لوحة تحكم مضخة كهربائية حتى 250 GPM"
+    },
+    {
+      "model": "CTRL-ELEC-750",
+      "type": "electric_controller",
+      "specs": {
+        "max_gpm": 750,
+        "voltage": "380-415V",
+        "phase": "3"
+      },
+      "price_sar": 18000,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "CTRL-ELEC-1500",
+      "type": "electric_controller",
+      "specs": {
+        "max_gpm": 1500,
+        "voltage": "380-415V",
+        "phase": "3",
+        "starter": "star_delta"
+      },
+      "price_sar": 25000,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "CTRL-DIESEL",
+      "type": "diesel_controller",
+      "specs": {
+        "standard": "NFPA 20",
+        "battery_charger": true,
+        "auto_start": true
+      },
+      "price_sar": 22000,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "CTRL-JOCKEY",
+      "type": "jockey_controller",
+      "specs": {
+        "standard": "NFPA 20",
+        "across_line_start": true
+      },
+      "price_sar": 5500,
+      "certifications": ["UL", "FM"]
+    },
+    {
+      "model": "HMI-CONTROLLER",
+      "type": "hmi_controller",
+      "specs": {
+        "display": "touchscreen",
+        "communication": ["BMS", "Modbus"],
+        "protection": "IP55"
+      },
+      "price_sar": 15000,
+      "certifications": ["UL", "FM"],
+      "notes": "شاشة HMI تفاعلية"
+    }
+  ]
+}

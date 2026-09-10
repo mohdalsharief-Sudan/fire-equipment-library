@@ -1,0 +1,129 @@
+{
+  "category": "pumps/single_pumps",
+  "category_ar": "مجموعات مضخات فردية (مضخة + جوكي + لوحة)",
+  "equipment": [
+    {
+      "model": "SFP-500-20EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 500,
+        "pressure_psi": 200,
+        "pressure_bar": 13.8,
+        "driver": "electric",
+        "power_hp": 20,
+        "base": "SF-H",
+        "flange_size": "5x3",
+        "speed_rpm": 2900,
+        "max_working_pressure_psi": 315,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 26250,
+      "certifications": ["UL", "FM"],
+      "applications": ["Sprinkler Systems", "Standpipe Systems"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم على قاعدة واحدة"
+    },
+    {
+      "model": "SFP-500-30EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 500,
+        "pressure_psi": 300,
+        "pressure_bar": 20.7,
+        "driver": "electric",
+        "power_hp": 25,
+        "base": "SF-H",
+        "flange_size": "5x3",
+        "speed_rpm": 2900,
+        "max_working_pressure_psi": 355,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 33600,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم"
+    },
+    {
+      "model": "SFP-750-20EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 750,
+        "pressure_psi": 200,
+        "pressure_bar": 13.8,
+        "driver": "electric",
+        "power_hp": 30,
+        "base": "SF-I",
+        "flange_size": "5x4",
+        "speed_rpm": 2900,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 39900,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم"
+    },
+    {
+      "model": "SFP-750-26EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 750,
+        "pressure_psi": 260,
+        "pressure_bar": 17.9,
+        "driver": "electric",
+        "power_hp": 40,
+        "base": "SF-I",
+        "flange_size": "5x4",
+        "speed_rpm": 2900,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 52500,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم"
+    },
+    {
+      "model": "SFP-1000-20EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 1000,
+        "pressure_psi": 200,
+        "pressure_bar": 13.8,
+        "driver": "electric",
+        "power_hp": 50,
+        "base": "SF-J",
+        "flange_size": "6x5",
+        "speed_rpm": 2900,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 65100,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم"
+    },
+    {
+      "model": "SFP-1000-26EH-2G",
+      "type": "end_suction_electric_package",
+      "specs": {
+        "flow_gpm": 1000,
+        "pressure_psi": 260,
+        "pressure_bar": 17.9,
+        "driver": "electric",
+        "power_hp": 75,
+        "base": "SF-K",
+        "flange_size": "6x5",
+        "speed_rpm": 2900,
+        "includes_jockey": true,
+        "includes_controller": true,
+        "is_complete_package": true
+      },
+      "price_sar": 96600,
+      "certifications": ["UL", "FM"],
+      "notes": "مجموعة متكاملة: مضخة + جوكي + لوحة تحكم"
+    }
+  ]
+}

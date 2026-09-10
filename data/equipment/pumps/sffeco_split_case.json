@@ -1,0 +1,74 @@
+{
+  "category": "pumps/split_case",
+  "category_ar": "مضخات Split Case",
+  "equipment": [
+    {
+      "model": "SF-A-150",
+      "type": "split_case_electric",
+      "specs": {
+        "driver": "electric",
+        "power_hp": 150,
+        "base": "SF-A",
+        "ffl_mm": 300,
+        "capacity_max_gpm": 2000,
+        "includes_jockey": false,
+        "includes_controller": false,
+        "requires_jockey": true
+      },
+      "price_sar": 0,
+      "certifications": ["UL", "FM"],
+      "notes": "Split Case - Electric Motor - يتطلب جوكي ولوحة تحكم"
+    },
+    {
+      "model": "SF-B-200",
+      "type": "split_case_electric",
+      "specs": {
+        "driver": "electric",
+        "power_hp": 200,
+        "base": "SF-B",
+        "ffl_mm": 350,
+        "capacity_max_gpm": 2000,
+        "includes_jockey": false,
+        "includes_controller": false,
+        "requires_jockey": true
+      },
+      "price_sar": 0,
+      "certifications": ["UL", "FM"],
+      "notes": "Split Case - Electric Motor - يتطلب جوكي ولوحة تحكم"
+    },
+    {
+      "model": "SF-C-250",
+      "type": "split_case_electric",
+      "specs": {
+        "driver": "electric",
+        "power_hp": 250,
+        "base": "SF-C",
+        "ffl_mm": 375,
+        "capacity_max_gpm": 2000,
+        "includes_jockey": false,
+        "includes_controller": false,
+        "requires_jockey": true
+      },
+      "price_sar": 0,
+      "certifications": ["UL", "FM"],
+      "notes": "Split Case - Electric Motor - يتطلب جوكي ولوحة تحكم"
+    },
+    {
+      "model": "SF-D-300",
+      "type": "split_case_electric",
+      "specs": {
+        "driver": "electric",
+        "power_hp": 300,
+        "base": "SF-D",
+        "ffl_mm": 400,
+        "capacity_max_gpm": 2000,
+        "includes_jockey": false,
+        "includes_controller": false,
+        "requires_jockey": true
+      },
+      "price_sar": 0,
+      "certifications": ["UL", "FM"],
+      "notes": "Split Case - Electric Motor - يتطلب جوكي ولوحة تحكم"
+    }
+  ]
+}
