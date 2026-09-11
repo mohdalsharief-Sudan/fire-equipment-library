@@ -368,7 +368,35 @@ class EquipmentLibraryGUI:
             wrap="word", padx=15, pady=15
         )
         text_widget.pack(fill="both", expand=True)
+        button_frame = tk.Frame(window, bg="#0f1626")
+        button_frame.pack(pady=10)
         
+        tk.Button(
+            button_frame,
+            text="💰 تعديل السعر",
+            command=lambda: self._edit_price(equipment, window),
+            bg="#E67E22", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=20, pady=8, cursor="hand2"
+        ).pack(side="left", padx=5)
+        
+        tk.Button(
+            button_frame,
+            text="📊 تاريخ الأسعار",
+            command=lambda: self._show_price_history(equipment),
+            bg="#8E44AD", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=20, pady=8, cursor="hand2"
+        ).pack(side="left", padx=5)
+        
+        tk.Button(
+            button_frame,
+            text="❌ إغلاق",
+            command=window.destroy,
+            bg="#E74C3C", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=20, pady=8, cursor="hand2"
+        ).pack(side="left", padx=5)
         # بناء النص
         specs = equipment.get('specs', {})
         lines = []
@@ -421,6 +449,157 @@ class EquipmentLibraryGUI:
         tk.Button(
             window, text="إغلاق",
             command=window.destroy,
+            bg="#E74C3C", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=30, pady=8, cursor="hand2"
+        ).pack(pady=10)
+    
+    def _edit_price(self, equipment, parent_window):
+        """تعديل سعر معدة"""
+        # نافذة إدخال
+        price_window = tk.Toplevel(parent_window)
+        price_window.title("تعديل السعر")
+        price_window.geometry("400x250")
+        price_window.configure(bg="#0f1626")
+        
+        tk.Label(
+            price_window,
+            text=f"🔧 {equipment['model']}",
+            font=("Arial", 14, "bold"),
+            bg="#0f1626", fg="#3498DB",
+            pady=15
+        ).pack()
+        
+        tk.Label(
+            price_window,
+            text=f"السعر الحالي: {equipment.get('price_sar', 0):,.0f} ريال",
+            font=("Arial", 11),
+            bg="#0f1626", fg="white"
+        ).pack(pady=5)
+        
+        tk.Label(
+            price_window,
+            text="السعر الجديد (ريال):",
+            font=("Arial", 11, "bold"),
+            bg="#0f1626", fg="#A8D5E5"
+        ).pack(pady=10)
+        
+        price_var = tk.StringVar(value=str(equipment.get('price_sar', 0)))
+        price_entry = tk.Entry(
+            price_window,
+            textvariable=price_var,
+            font=("Arial", 14),
+            width=15,
+            justify="center"
+        )
+        price_entry.pack(pady=5)
+        price_entry.select_range(0, "end")
+        price_entry.focus()
+        
+        def save_price():
+            try:
+                new_price = float(price_var.get())
+                if new_price < 0:
+                    messagebox.showerror("خطأ", "السعر يجب أن يكون موجباً")
+                    return
+                
+                # الحصول على ID المعدة من قاعدة البيانات
+                equipment_id = self._get_equipment_id(equipment['model'])
+                
+                if equipment_id:
+                    # تحديث في قاعدة البيانات
+                    self.search.conn.execute("""
+                        UPDATE equipment SET price_sar = ? WHERE id = ?
+                    """, (new_price, equipment_id))
+                    self.search.conn.commit()
+                    
+                    # تحديث في الذاكرة
+                    equipment['price_sar'] = new_price
+                    
+                    # إعادة عرض النتائج
+                    self._display_results()
+                    
+                    messagebox.showinfo("تم", f"✅ تم تحديث السعر إلى {new_price:,.0f} ريال")
+                    price_window.destroy()
+                    parent_window.destroy()
+                    
+                    # فتح التفاصيل مرة أخرى بالسعر الجديد
+                    self._show_details(equipment)
+                else:
+                    messagebox.showerror("خطأ", "لم يتم العثور على المعدة")
+                    
+            except ValueError:
+                messagebox.showerror("خطأ", "أدخل رقماً صحيحاً")
+        
+        tk.Button(
+            price_window,
+            text="💾 حفظ",
+            command=save_price,
+            bg="#27AE60", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=30, pady=8, cursor="hand2"
+        ).pack(pady=15)
+        
+        price_entry.bind("<Return>", lambda e: save_price())
+    
+    def _get_equipment_id(self, model: str) -> int:
+        """الحصول على ID المعدة من قاعدة البيانات"""
+        cursor = self.search.conn.cursor()
+        cursor.execute("SELECT id FROM equipment WHERE model = ?", (model,))
+        row = cursor.fetchone()
+        return row[0] if row else None
+    
+    def _show_price_history(self, equipment):
+        """عرض تاريخ الأسعار"""
+        equipment_id = self._get_equipment_id(equipment['model'])
+        if not equipment_id:
+            messagebox.showerror("خطأ", "لم يتم العثور على المعدة")
+            return
+        
+        cursor = self.search.conn.cursor()
+        cursor.execute("""
+            SELECT price_sar, source, changed_at
+            FROM price_history
+            WHERE equipment_id = ?
+            ORDER BY changed_at DESC
+        """, (equipment_id,))
+        
+        history = cursor.fetchall()
+        
+        # نافذة التاريخ
+        hist_window = tk.Toplevel(self.root)
+        hist_window.title(f"تاريخ الأسعار - {equipment['model']}")
+        hist_window.geometry("500x400")
+        hist_window.configure(bg="#0f1626")
+        
+        tk.Label(
+            hist_window,
+            text=f"📊 تاريخ أسعار {equipment['model']}",
+            font=("Arial", 14, "bold"),
+            bg="#0f1626", fg="#3498DB",
+            pady=15
+        ).pack()
+        
+        # قائمة
+        listbox = tk.Listbox(
+            hist_window,
+            font=("Consolas", 11),
+            bg="#1a1a2e", fg="#e0e0e0",
+            width=60, height=15
+        )
+        listbox.pack(padx=20, pady=10, fill="both", expand=True)
+        
+        for row in history:
+            price, source, date = row
+            listbox.insert(tk.END, f"{date[:16]} | {price:>10,.0f} ريال | {source}")
+        
+        if not history:
+            listbox.insert(tk.END, "لا يوجد سجل أسعار بعد")
+        
+        tk.Button(
+            hist_window,
+            text="إغلاق",
+            command=hist_window.destroy,
             bg="#E74C3C", fg="white",
             font=("Arial", 11, "bold"),
             padx=30, pady=8, cursor="hand2"

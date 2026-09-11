@@ -174,6 +174,37 @@ class EquipmentDatabase:
         cursor = self.conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM equipment")
         return cursor.fetchone()[0]
+    def update_price(self, equipment_id: int, new_price: float, source: str = "تعديل يدوي"):
+        """تحديث سعر معدة"""
+        cursor = self.conn.cursor()
+        
+        # تحديث السعر
+        cursor.execute("""
+            UPDATE equipment 
+            SET price_sar = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        """, (new_price, equipment_id))
+        
+        # تسجيل في التاريخ
+        cursor.execute("""
+            INSERT INTO price_history (equipment_id, price_sar, source)
+            VALUES (?, ?, ?)
+        """, (equipment_id, new_price, source))
+        
+        self.conn.commit()
+        logger.info(f"✅ تم تحديث السعر: {equipment_id} → {new_price}")
+        return True
+    
+    def get_price_history(self, equipment_id: int) -> List[Dict]:
+        """الحصول على تاريخ أسعار معدة"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT price_sar, source, changed_at
+            FROM price_history
+            WHERE equipment_id = ?
+            ORDER BY changed_at DESC
+        """, (equipment_id,))
+        return [dict(row) for row in cursor.fetchall()]
     
     def close(self):
         """إغلاق الاتصال"""
