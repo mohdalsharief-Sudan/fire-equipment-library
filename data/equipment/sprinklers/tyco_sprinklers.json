@@ -1,0 +1,202 @@
+{
+  "category": "sprinklers",
+  "category_ar": "الرشاشات المعتمدة - Tyco",
+  "equipment": [
+    {
+      "model": "TYCO-TY-B-K56-UPRIGHT",
+      "type": "upright_sprinkler",
+      "type_ar": "رشاش قائم - K5.6",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 5.6,
+        "k_metric": 80,
+        "thread": "1/2\" NPT",
+        "orientation": "upright",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "finish": "Brass",
+        "application": "OH1, OH2, Light Hazard"
+      },
+      "price_sar": 18,
+      "certifications": ["UL", "FM"],
+      "applications": ["Commercial", "Residential", "Industrial"],
+      "notes": "Tyco TY-B - رشاش قائم قياسي - للسقف المكشوف"
+    },
+    {
+      "model": "TYCO-TY-B-K56-PENDENT",
+      "type": "pendant_sprinkler",
+      "type_ar": "رشاش مقلوب - K5.6",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 5.6,
+        "k_metric": 80,
+        "thread": "1/2\" NPT",
+        "orientation": "pendent",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "finish": "Brass",
+        "application": "OH1, OH2, Light Hazard"
+      },
+      "price_sar": 35,
+      "certifications": ["UL", "FM"],
+      "applications": ["Commercial", "Residential", "Offices"],
+      "notes": "Tyco TY-B - رشاش مقلوب - للأسقف المستعارة"
+    },
+    {
+      "model": "TYCO-TY-FRB-K56-PENDENT",
+      "type": "pendant_sprinkler",
+      "type_ar": "رشاش مقلوب سريع - K5.6",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 5.6,
+        "k_metric": 80,
+        "thread": "1/2\" NPT",
+        "orientation": "pendent",
+        "response": "quick",
+        "bulb_size_mm": 3,
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "Light Hazard, Residential"
+      },
+      "price_sar": 40,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco TY-FRB - رشاش مقلوب سريع الاستجابة (QR)"
+    },
+    {
+      "model": "TYCO-TY-FRB-K56-CONCEALED",
+      "type": "concealed_sprinkler",
+      "type_ar": "رشاش مخفي - K5.6",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 5.6,
+        "k_metric": 80,
+        "thread": "1/2\" NPT",
+        "orientation": "concealed_pendent",
+        "response": "quick",
+        "cover_plate_finish": ["Chrome", "White", "Brass"],
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "Architectural Spaces, Hotels"
+      },
+      "price_sar": 60,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco - رشاش مخفي بغطاء جمالي"
+    },
+    {
+      "model": "TYCO-TY-B-K56-SIDEWALL",
+      "type": "sidewall_sprinkler",
+      "type_ar": "رشاش جانبي - K5.6",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 5.6,
+        "k_metric": 80,
+        "thread": "1/2\" NPT",
+        "orientation": "horizontal_sidewall",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "Corridors, Small Rooms, Light Hazard"
+      },
+      "price_sar": 45,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco TY-B - رشاش جانبي للممرات"
+    },
+    {
+      "model": "TYCO-TY-B-K80-UPRIGHT",
+      "type": "upright_sprinkler",
+      "type_ar": "رشاش قائم - K8.0",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 8.0,
+        "k_metric": 115,
+        "thread": "1/2\" NPT",
+        "orientation": "upright",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "OH2, EH1"
+      },
+      "price_sar": 35,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco - رشاش قائم - للمخازن والمصانع"
+    },
+    {
+      "model": "TYCO-ELO-231-K112-UPRIGHT",
+      "type": "upright_sprinkler",
+      "type_ar": "رشاش قائم - K11.2",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 11.2,
+        "k_metric": 160,
+        "thread": "3/4\" NPT",
+        "orientation": "upright",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "EH1, EH2, Storage"
+      },
+      "price_sar": 65,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco ELO-231 - للمخازن والمخاطر العالية"
+    },
+    {
+      "model": "TYCO-EC-25-K140-UPRIGHT",
+      "type": "upright_sprinkler",
+      "type_ar": "رشاش قائم - K14.0",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 14.0,
+        "k_metric": 200,
+        "thread": "3/4\" NPT",
+        "orientation": "upright",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "EH2, Storage"
+      },
+      "price_sar": 90,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco EC-25 - للمخازن الكبيرة"
+    },
+    {
+      "model": "TYCO-ESFR-25-K140-PENDENT",
+      "type": "esfr_sprinkler",
+      "type_ar": "رشاش ESFR - K14.0",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 14.0,
+        "k_metric": 200,
+        "thread": "3/4\" NPT",
+        "orientation": "pendent",
+        "response": "esfr",
+        "max_pressure_bar": 12,
+        "temperature_c": 74,
+        "application": "Storage - ESFR"
+      },
+      "price_sar": 250,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco ESFR-25 - للتخزين الفوري (بدون رشاشات إضافية)"
+    },
+    {
+      "model": "TYCO-K168-UPRIGHT",
+      "type": "upright_sprinkler",
+      "type_ar": "رشاش قائم - K16.8",
+      "specs": {
+        "manufacturer": "Tyco",
+        "k_factor": 16.8,
+        "k_metric": 240,
+        "thread": "1\" NPT",
+        "orientation": "upright",
+        "response": "standard",
+        "max_pressure_bar": 12,
+        "temperature_c": 68,
+        "application": "Storage - High Piled"
+      },
+      "price_sar": 120,
+      "certifications": ["UL", "FM"],
+      "notes": "Tyco - للمخازن ذات الارتفاع الكبير"
+    }
+  ]
+}

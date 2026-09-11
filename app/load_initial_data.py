@@ -62,6 +62,22 @@ def main():
                 count = loader.load_equipment_file(file_path, category, naffco_id)
                 logger.info(f"   ✅ {rel_path}: {count}")
     
+    # ============ الرشاشات ============
+    print("\n📦 تحميل الرشاشات...")
+    
+    sprinkler_brands_id = loader.db.add_manufacturer(
+        name="Sprinkler Brands",
+        name_ar="مصنعو الرشاشات المعتمدون",
+        country="دولي",
+        certifications=["UL", "FM"]
+    )
+    logger.info(f"✅ Sprinkler Brands ID: {sprinkler_brands_id}")
+    
+    sprinklers_file = os.path.join(base_dir, 'data', 'equipment', 'sprinklers', 'certified_sprinklers.json')
+    if os.path.exists(sprinklers_file):
+        count = loader.load_equipment_file(sprinklers_file, 'sprinklers', sprinkler_brands_id)
+        logger.info(f"   ✅ {sprinklers_file}: {count}")
+        
     # ============ الإحصائيات ============
     print("\n" + "=" * 60)
     print("📊 إحصائيات قاعدة البيانات")
