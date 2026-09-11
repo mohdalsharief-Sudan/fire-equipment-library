@@ -1,0 +1,626 @@
+[
+  {
+    "manufacturer": "SFFECO",
+    "model": "SF-A-150",
+    "type": "split_case_electric",
+    "specs": {
+      "driver": "electric",
+      "power_hp": 150,
+      "base": "SF-A",
+      "ffl_mm": 300,
+      "capacity_max_gpm": 2000,
+      "includes_jockey": false,
+      "includes_controller": false,
+      "requires_jockey": true
+    },
+    "price_sar": 0.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SF-B-200",
+    "type": "split_case_electric",
+    "specs": {
+      "driver": "electric",
+      "power_hp": 200,
+      "base": "SF-B",
+      "ffl_mm": 350,
+      "capacity_max_gpm": 2000,
+      "includes_jockey": false,
+      "includes_controller": false,
+      "requires_jockey": true
+    },
+    "price_sar": 0.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SF-C-250",
+    "type": "split_case_electric",
+    "specs": {
+      "driver": "electric",
+      "power_hp": 250,
+      "base": "SF-C",
+      "ffl_mm": 375,
+      "capacity_max_gpm": 2000,
+      "includes_jockey": false,
+      "includes_controller": false,
+      "requires_jockey": true
+    },
+    "price_sar": 0.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SF-D-300",
+    "type": "split_case_electric",
+    "specs": {
+      "driver": "electric",
+      "power_hp": 300,
+      "base": "SF-D",
+      "ffl_mm": 400,
+      "capacity_max_gpm": 2000,
+      "includes_jockey": false,
+      "includes_controller": false,
+      "requires_jockey": true
+    },
+    "price_sar": 0.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "AIR-RELEASE-0.5",
+    "type": "air_release_valve",
+    "specs": {
+      "size_inch": 0.5,
+      "application": "split_case_pumps"
+    },
+    "price_sar": 800.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "BUTTERFLY-4",
+    "type": "butterfly_valve",
+    "specs": {
+      "size_inch": 4,
+      "pressure_rating_psi": 300,
+      "material": "cast_iron"
+    },
+    "price_sar": 900.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "GATE-4",
+    "type": "gate_valve",
+    "specs": {
+      "size_inch": 4,
+      "pressure_rating_psi": 300,
+      "material": "cast_iron",
+      "connection": "flanged"
+    },
+    "price_sar": 1200.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CHECK-4",
+    "type": "check_valve",
+    "specs": {
+      "size_inch": 4,
+      "pressure_rating_psi": 300,
+      "material": "cast_iron"
+    },
+    "price_sar": 1500.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "GATE-6",
+    "type": "gate_valve",
+    "specs": {
+      "size_inch": 6,
+      "pressure_rating_psi": 300,
+      "material": "cast_iron"
+    },
+    "price_sar": 1800.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "RELIEF-ZUM-P4000A",
+    "type": "relief_valve",
+    "specs": {
+      "size_inch": 0.75,
+      "pressure_range_psi": "50-200",
+      "material": "cast_bronze"
+    },
+    "price_sar": 2500.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "JOCKEY-3HP",
+    "type": "jockey_vertical",
+    "specs": {
+      "power_hp": 3,
+      "flow_gpm": 17.6,
+      "pressure_bar": 10,
+      "type": "vertical_multistage",
+      "material": "stainless_steel_304",
+      "is_jockey": true
+    },
+    "price_sar": 4500.0,
+    "certifications": []
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CTRL-JOCKEY",
+    "type": "jockey_controller",
+    "specs": {
+      "standard": "NFPA 20",
+      "across_line_start": true
+    },
+    "price_sar": 5500.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "TANK-500L",
+    "type": "diesel_tank",
+    "specs": {
+      "capacity_liters": 500,
+      "capacity_gallons": 132,
+      "construction": "horizontal_cylindrical",
+      "standard": "UL-142"
+    },
+    "price_sar": 8000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "JOCKEY-5.5HP",
+    "type": "jockey_vertical",
+    "specs": {
+      "power_hp": 5.5,
+      "flow_gpm": 50,
+      "pressure_bar": 10,
+      "type": "vertical_multistage",
+      "material": "stainless_steel_304",
+      "is_jockey": true
+    },
+    "price_sar": 8250.0,
+    "certifications": []
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "JOCKEY-7.5HP",
+    "type": "jockey_vertical",
+    "specs": {
+      "power_hp": 7.5,
+      "flow_gpm": 60,
+      "pressure_bar": 10,
+      "type": "vertical_multistage",
+      "is_jockey": true
+    },
+    "price_sar": 11000.0,
+    "certifications": []
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CTRL-ELEC-250",
+    "type": "electric_controller",
+    "specs": {
+      "max_gpm": 250,
+      "voltage": "380-415V",
+      "phase": "3",
+      "standard": "NFPA 20"
+    },
+    "price_sar": 12000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "TANK-1000L",
+    "type": "diesel_tank",
+    "specs": {
+      "capacity_liters": 1000,
+      "capacity_gallons": 264,
+      "construction": "horizontal_cylindrical"
+    },
+    "price_sar": 14000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "JOCKEY-10HP",
+    "type": "jockey_vertical",
+    "specs": {
+      "power_hp": 10,
+      "flow_gpm": 80,
+      "pressure_bar": 10,
+      "type": "vertical_multistage",
+      "is_jockey": true
+    },
+    "price_sar": 15000.0,
+    "certifications": []
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "HMI-CONTROLLER",
+    "type": "hmi_controller",
+    "specs": {
+      "display": "touchscreen",
+      "communication": [
+        "BMS",
+        "Modbus"
+      ],
+      "protection": "IP55"
+    },
+    "price_sar": 15000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CTRL-ELEC-750",
+    "type": "electric_controller",
+    "specs": {
+      "max_gpm": 750,
+      "voltage": "380-415V",
+      "phase": "3"
+    },
+    "price_sar": 18000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "TANK-1500L",
+    "type": "diesel_tank",
+    "specs": {
+      "capacity_liters": 1500,
+      "capacity_gallons": 396,
+      "construction": "horizontal_cylindrical"
+    },
+    "price_sar": 19000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CTRL-DIESEL",
+    "type": "diesel_controller",
+    "specs": {
+      "standard": "NFPA 20",
+      "battery_charger": true,
+      "auto_start": true
+    },
+    "price_sar": 22000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "CTRL-ELEC-1500",
+    "type": "electric_controller",
+    "specs": {
+      "max_gpm": 1500,
+      "voltage": "380-415V",
+      "phase": "3",
+      "starter": "star_delta"
+    },
+    "price_sar": 25000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-500-20EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 500,
+      "pressure_psi": 200,
+      "pressure_bar": 13.8,
+      "driver": "electric",
+      "power_hp": 20,
+      "base": "SF-H",
+      "flange_size": "5x3",
+      "speed_rpm": 2900,
+      "max_working_pressure_psi": 315,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 26250.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-500-30EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 500,
+      "pressure_psi": 300,
+      "pressure_bar": 20.7,
+      "driver": "electric",
+      "power_hp": 25,
+      "base": "SF-H",
+      "flange_size": "5x3",
+      "speed_rpm": 2900,
+      "max_working_pressure_psi": 355,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 33600.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-750-20EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 750,
+      "pressure_psi": 200,
+      "pressure_bar": 13.8,
+      "driver": "electric",
+      "power_hp": 30,
+      "base": "SF-I",
+      "flange_size": "5x4",
+      "speed_rpm": 2900,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 39900.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-750-26EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 750,
+      "pressure_psi": 260,
+      "pressure_bar": 17.9,
+      "driver": "electric",
+      "power_hp": 40,
+      "base": "SF-I",
+      "flange_size": "5x4",
+      "speed_rpm": 2900,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 52500.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-1000-20EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 1000,
+      "pressure_psi": 200,
+      "pressure_bar": 13.8,
+      "driver": "electric",
+      "power_hp": 50,
+      "base": "SF-J",
+      "flange_size": "6x5",
+      "speed_rpm": 2900,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 65100.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "SFP-1000-26EH-2G",
+    "type": "end_suction_electric_package",
+    "specs": {
+      "flow_gpm": 1000,
+      "pressure_psi": 260,
+      "pressure_bar": 17.9,
+      "driver": "electric",
+      "power_hp": 75,
+      "base": "SF-K",
+      "flange_size": "6x5",
+      "speed_rpm": 2900,
+      "includes_jockey": true,
+      "includes_controller": true,
+      "is_complete_package": true
+    },
+    "price_sar": 96600.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "EDJ-500-8",
+    "type": "electrical_diesel_jockey",
+    "specs": {
+      "flow_gpm": 500,
+      "pressure_bar": 8,
+      "diesel_hp": 60,
+      "electric_hp": 50,
+      "jockey_hp": 5.5,
+      "jockey_gpm": 50,
+      "weight_kg": 1100,
+      "header_pipe": "6\"",
+      "dimensions_mm": {
+        "width": 1700,
+        "height": 1570,
+        "length": 1740
+      },
+      "includes_jockey": true,
+      "includes_controller": true,
+      "includes_diesel": true,
+      "is_complete_package": true
+    },
+    "price_sar": 185000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "EDJ-750-8",
+    "type": "electrical_diesel_jockey",
+    "specs": {
+      "flow_gpm": 750,
+      "pressure_bar": 8,
+      "diesel_hp": 85,
+      "electric_hp": 75,
+      "jockey_hp": 5.5,
+      "jockey_gpm": 50,
+      "weight_kg": 1440,
+      "header_pipe": "6\"",
+      "dimensions_mm": {
+        "width": 1750,
+        "height": 1650,
+        "length": 1950
+      },
+      "includes_jockey": true,
+      "includes_controller": true,
+      "includes_diesel": true,
+      "is_complete_package": true
+    },
+    "price_sar": 225800.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "EDJ-1000-9",
+    "type": "electrical_diesel_jockey",
+    "specs": {
+      "flow_gpm": 1000,
+      "pressure_bar": 9,
+      "diesel_hp": 110,
+      "electric_hp": 100,
+      "jockey_hp": 5.5,
+      "jockey_gpm": 50,
+      "weight_kg": 1640,
+      "header_pipe": "6\"",
+      "dimensions_mm": {
+        "width": 1800,
+        "height": 1820,
+        "length": 2100
+      },
+      "includes_jockey": true,
+      "includes_controller": true,
+      "includes_diesel": true,
+      "is_complete_package": true
+    },
+    "price_sar": 285000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  },
+  {
+    "manufacturer": "SFFECO",
+    "model": "EDJ-1500-9",
+    "type": "electrical_diesel_jockey",
+    "specs": {
+      "flow_gpm": 1500,
+      "pressure_bar": 9,
+      "diesel_hp": 150,
+      "electric_hp": 125,
+      "jockey_hp": 5.5,
+      "jockey_gpm": 50,
+      "weight_kg": 1800,
+      "header_pipe": "6\"",
+      "dimensions_mm": {
+        "width": 1900,
+        "height": 1900,
+        "length": 2200
+      },
+      "includes_jockey": true,
+      "includes_controller": true,
+      "includes_diesel": true,
+      "is_complete_package": true
+    },
+    "price_sar": 350000.0,
+    "certifications": [
+      "UL",
+      "FM"
+    ]
+  }
+]
