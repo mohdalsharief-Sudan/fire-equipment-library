@@ -96,6 +96,50 @@ class EquipmentDatabase:
         """)
         
         # فهارس
+        # ========== العملاء ==========
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS clients (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL UNIQUE,
+                company TEXT,
+                phone TEXT,
+                email TEXT,
+                city TEXT,
+                notes TEXT,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        
+        # ========== المشاريع ==========
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS projects (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                project_name TEXT NOT NULL,
+                client_id INTEGER,
+                service_provider TEXT,
+                location TEXT,
+                fire_suppression_cost REAL DEFAULT 0,
+                fire_alarm_cost REAL DEFAULT 0,
+                ventilation_cost REAL DEFAULT 0,
+                other_systems_cost REAL DEFAULT 0,
+                total_before_vat REAL DEFAULT 0,
+                vat_15 REAL DEFAULT 0,
+                total_with_vat REAL DEFAULT 0,
+                reference_file TEXT,
+                notes TEXT,
+                status TEXT DEFAULT 'completed',
+                project_date TEXT,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (client_id) REFERENCES clients(id)
+            )
+        """)
+        
+        # فهارس
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_client ON projects(client_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_name ON projects(project_name)")
+        
+        # ========== فهارس المعدات ==========
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_model ON equipment(model)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_model ON equipment(model)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_type ON equipment(type)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_mfr ON equipment(manufacturer_id)")
@@ -174,6 +218,122 @@ class EquipmentDatabase:
         cursor = self.conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM equipment")
         return cursor.fetchone()[0]
+    
+        # ========== العملاء ==========
+    
+    def add_client(self, name: str, company: str = "", phone: str = "",
+                   email: str = "", city: str = "", notes: str = "") -> int:
+        """إضافة عميل"""
+        cursor = self.conn.cursor()
+        
+        # تحقق أولاً
+        cursor.execute("SELECT id FROM clients WHERE name = ?", (name,))
+        row = cursor.fetchone()
+        if row:
+            return row[0]
+        
+        cursor.execute("""
+            INSERT INTO clients (name, company, phone, email, city, notes)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (name, company, phone, email, city, notes))
+        self.conn.commit()
+        return cursor.lastrowid
+    
+    def get_client(self, name: str) -> Optional[Dict]:
+        """الحصول على عميل"""
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT * FROM clients WHERE name = ?", (name,))
+        row = cursor.fetchone()
+        return dict(row) if row else None
+    
+    def list_clients(self) -> List[Dict]:
+        """قائمة العملاء"""
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT * FROM clients ORDER BY name")
+        return [dict(row) for row in cursor.fetchall()]
+    
+    # ========== المشاريع ==========
+    
+    def add_project(self, project_data: Dict) -> int:
+        """إضافة مشروع"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            INSERT INTO projects 
+            (project_name, client_id, service_provider, location,
+             fire_suppression_cost, fire_alarm_cost, ventilation_cost, other_systems_cost,
+             total_before_vat, vat_15, total_with_vat,
+             reference_file, notes, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            project_data.get('project_name', ''),
+            project_data.get('client_id'),
+            project_data.get('service_provider', ''),
+            project_data.get('location', ''),
+            project_data.get('fire_suppression_cost', 0),
+            project_data.get('fire_alarm_cost', 0),
+            project_data.get('ventilation_cost', 0),
+            project_data.get('other_systems_cost', 0),
+            project_data.get('total_before_vat', 0),
+            project_data.get('vat_15', 0),
+            project_data.get('total_with_vat', 0),
+            project_data.get('reference_file', ''),
+            project_data.get('notes', ''),
+            project_data.get('status', 'completed')
+        ))
+        self.conn.commit()
+        return cursor.lastrowid
+    
+    def list_projects(self) -> List[Dict]:
+        """قائمة المشاريع"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT p.*, c.name as client_name
+            FROM projects p
+            LEFT JOIN clients c ON p.client_id = c.id
+            ORDER BY p.total_with_vat DESC
+        """)
+        return [dict(row) for row in cursor.fetchall()]
+    
+    def get_project(self, project_id: int) -> Optional[Dict]:
+        """الحصول على مشروع"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT p.*, c.name as client_name
+            FROM projects p
+            LEFT JOIN clients c ON p.client_id = c.id
+            WHERE p.id = ?
+        """, (project_id,))
+        row = cursor.fetchone()
+        return dict(row) if row else None
+    
+    def get_projects_count(self) -> int:
+        """عدد المشاريع"""
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM projects")
+        return cursor.fetchone()[0]
+    
+    def get_clients_count(self) -> int:
+        """عدد العملاء"""
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM clients")
+        return cursor.fetchone()[0]
+    
+    def get_projects_stats(self) -> Dict:
+        """إحصائيات المشاريع"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT 
+                COUNT(*) as count,
+                COALESCE(SUM(total_with_vat), 0) as total,
+                COALESCE(SUM(fire_suppression_cost), 0) as fire_total,
+                COALESCE(SUM(fire_alarm_cost), 0) as alarm_total,
+                COALESCE(SUM(ventilation_cost), 0) as ventilation_total,
+                COALESCE(SUM(other_systems_cost), 0) as other_total
+            FROM projects
+        """)
+        row = cursor.fetchone()
+        return dict(row) if row else {}
+    
     def update_price(self, equipment_id: int, new_price: float, source: str = "تعديل يدوي"):
         """تحديث سعر معدة"""
         cursor = self.conn.cursor()

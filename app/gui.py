@@ -1,6 +1,7 @@
 # app/gui.py
 """
 واجهة رسومية لمكتبة معدات السلامة
+مع تابات للمعدات والمشاريع والعملاء والإحصائيات
 """
 
 import sys
@@ -8,10 +9,13 @@ import os
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import threading
+import json
+from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from app.search import EquipmentSearch
+from app.database import EquipmentDatabase
 
 
 class EquipmentLibraryGUI:
@@ -20,186 +24,79 @@ class EquipmentLibraryGUI:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Fire Equipment Library - مكتبة معدات السلامة")
-        self.root.geometry("1200x750")
+        self.root.geometry("1300x800")
         self.root.configure(bg="#0f1626")
         
-        # المتغيرات
-        self.search_var = tk.StringVar()
-        self.manufacturer_var = tk.StringVar(value="الكل")
-        self.category_var = tk.StringVar(value="الكل")
-        self.min_flow_var = tk.StringVar()
-        self.max_price_var = tk.StringVar()
+        # الاتصال بقاعدة البيانات
+        self.search = EquipmentSearch()
+        self.db = EquipmentDatabase()
         
         # البيانات
-        self.search = EquipmentSearch()
         self.results = []
+        self.projects = []
         
         self._build_ui()
-        self._load_all()
+        
+        # تحميل البيانات الأولية
+        self._load_equipment()
+        self._load_projects()
     
     def _build_ui(self):
-        """بناء الواجهة"""
+        """بناء الواجهة الرئيسية"""
         # ====== العنوان ======
         title_frame = tk.Frame(self.root, bg="#1B4F72")
         title_frame.pack(fill="x", padx=10, pady=10)
         
-        title_label = tk.Label(
+        tk.Label(
             title_frame,
             text="🔥 Fire Equipment Library",
             font=("Arial", 22, "bold"),
-            bg="#1B4F72",
-            fg="white",
-            padx=20,
-            pady=12,
-        )
-        title_label.pack()
+            bg="#1B4F72", fg="white",
+            padx=20, pady=10
+        ).pack()
         
-        subtitle = tk.Label(
+        tk.Label(
             title_frame,
-            text="مكتبة معدات السلامة - SFFECO | NAFFCO",
+            text="مكتبة معدات السلامة - SFFECO | NAFFCO | Sprinklers",
             font=("Arial", 11),
-            bg="#1B4F72",
-            fg="#A8D5E5",
-        )
-        subtitle.pack(pady=(0, 8))
+            bg="#1B4F72", fg="#A8D5E5",
+        ).pack(pady=(0, 8))
         
-        # ====== إطار البحث ======
-        search_frame = tk.Frame(self.root, bg="#0f1626")
-        search_frame.pack(fill="x", padx=10, pady=5)
+        # ====== شريط التابات ======
+        style = ttk.Style()
+        style.theme_use('default')
+        style.configure('TNotebook', background="#0f1626", borderwidth=0)
+        style.configure('TNotebook.Tab', 
+                       background="#2874A6", 
+                       foreground="white",
+                       padding=[20, 10],
+                       font=("Arial", 11, "bold"))
+        style.map('TNotebook.Tab',
+                 background=[('selected', '#1B4F72')],
+                 foreground=[('selected', 'white')])
         
-        tk.Label(
-            search_frame, text="🔍 بحث:",
-            font=("Arial", 11, "bold"),
-            bg="#0f1626", fg="white"
-        ).pack(side="left", padx=5)
+        self.notebook = ttk.Notebook(self.root)
+        self.notebook.pack(fill="both", expand=True, padx=10, pady=5)
         
-        search_entry = tk.Entry(
-            search_frame, textvariable=self.search_var,
-            width=30, font=("Arial", 11)
-        )
-        search_entry.pack(side="left", padx=5)
-        search_entry.bind("<Return>", lambda e: self._do_search())
+        # ====== التاب 1: المعدات ======
+        self.tab_equipment = tk.Frame(self.notebook, bg="#0f1626")
+        self.notebook.add(self.tab_equipment, text="🔧 المعدات")
+        self._build_equipment_tab()
         
-        # المصنع
-        tk.Label(
-            search_frame, text="المصنع:",
-            font=("Arial", 10), bg="#0f1626", fg="white"
-        ).pack(side="left", padx=5)
+        # ====== التاب 2: المشاريع ======
+        self.tab_projects = tk.Frame(self.notebook, bg="#0f1626")
+        self.notebook.add(self.tab_projects, text="📊 المشاريع")
+        self._build_projects_tab()
         
-        manufacturer_combo = ttk.Combobox(
-            search_frame, textvariable=self.manufacturer_var,
-            values=["الكل", "SFFECO", "NAFFCO"],
-            width=12, font=("Arial", 10), state="readonly"
-        )
-        manufacturer_combo.pack(side="left", padx=5)
+        # ====== التاب 3: العملاء ======
+        self.tab_clients = tk.Frame(self.notebook, bg="#0f1626")
+        self.notebook.add(self.tab_clients, text="👥 العملاء")
+        self._build_clients_tab()
         
-        # الفئة
-        tk.Label(
-            search_frame, text="الفئة:",
-            font=("Arial", 10), bg="#0f1626", fg="white"
-        ).pack(side="left", padx=5)
-        
-        category_combo = ttk.Combobox(
-            search_frame, textvariable=self.category_var,
-            values=["الكل", "package_units", "single_pumps", "split_case", "jockey", "controllers", "valves", "tanks"],
-            width=15, font=("Arial", 10), state="readonly"
-        )
-        category_combo.pack(side="left", padx=5)
-        
-        # زر البحث
-        search_btn = tk.Button(
-            search_frame, text="🔍 بحث",
-            command=self._do_search,
-            bg="#27AE60", fg="white",
-            font=("Arial", 10, "bold"),
-            padx=15, pady=3, cursor="hand2"
-        )
-        search_btn.pack(side="left", padx=10)
-        
-        # زر عرض الكل
-        all_btn = tk.Button(
-            search_frame, text="📋 عرض الكل",
-            command=self._load_all,
-            bg="#2874A6", fg="white",
-            font=("Arial", 10, "bold"),
-            padx=15, pady=3, cursor="hand2"
-        )
-        all_btn.pack(side="left", padx=5)
-        
-        # ====== فلاتر متقدمة ======
-        filter_frame = tk.Frame(self.root, bg="#0f1626")
-        filter_frame.pack(fill="x", padx=10, pady=5)
-        
-        tk.Label(
-            filter_frame, text="أدنى تدفق (GPM):",
-            font=("Arial", 10), bg="#0f1626", fg="#A8D5E5"
-        ).pack(side="left", padx=5)
-        
-        tk.Entry(
-            filter_frame, textvariable=self.min_flow_var,
-            width=10, font=("Arial", 10)
-        ).pack(side="left", padx=5)
-        
-        tk.Label(
-            filter_frame, text="أقصى سعر (ريال):",
-            font=("Arial", 10), bg="#0f1626", fg="#A8D5E5"
-        ).pack(side="left", padx=5)
-        
-        tk.Entry(
-            filter_frame, textvariable=self.max_price_var,
-            width=12, font=("Arial", 10)
-        ).pack(side="left", padx=5)
-        
-        # ====== جدول النتائج ======
-        table_frame = tk.Frame(self.root, bg="#0f1626")
-        table_frame.pack(fill="both", expand=True, padx=10, pady=10)
-        
-        # Scrollbars
-        scroll_y = tk.Scrollbar(table_frame, orient="vertical")
-        scroll_x = tk.Scrollbar(table_frame, orient="horizontal")
-        
-        # Treeview
-        columns = ("#", "manufacturer", "model", "type", "flow", "pressure", "price", "package")
-        self.tree = ttk.Treeview(
-            table_frame, columns=columns, show="headings",
-            yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set
-        )
-        
-        # العناوين
-        headers = {
-            "#": "#",
-            "manufacturer": "المصنع",
-            "model": "الموديل",
-            "type": "النوع",
-            "flow": "التدفق (GPM)",
-            "pressure": "الضغط (bar)",
-            "price": "السعر (ريال)",
-            "package": "الحزمة"
-        }
-        
-        widths = {
-            "#": 40,
-            "manufacturer": 100,
-            "model": 180,
-            "type": 180,
-            "flow": 100,
-            "pressure": 100,
-            "price": 120,
-            "package": 150
-        }
-        
-        for col in columns:
-            self.tree.heading(col, text=headers[col])
-            self.tree.column(col, width=widths[col], anchor="center")
-        
-        self.tree.pack(side="left", fill="both", expand=True)
-        scroll_y.config(command=self.tree.yview)
-        scroll_x.config(command=self.tree.xview)
-        scroll_y.pack(side="right", fill="y")
-        scroll_x.pack(side="bottom", fill="x")
-        
-        # Bind للنقر
-        self.tree.bind("<Double-1>", self._on_item_double_click)
+        # ====== التاب 4: الإحصائيات ======
+        self.tab_stats = tk.Frame(self.notebook, bg="#0f1626")
+        self.notebook.add(self.tab_stats, text="📈 الإحصائيات")
+        self._build_stats_tab()
         
         # ====== شريط الحالة ======
         status_frame = tk.Frame(self.root, bg="#1B4F72")
@@ -212,100 +109,354 @@ class EquipmentLibraryGUI:
             padx=10, pady=5
         ).pack(side="left")
         
-        self.count_var = tk.StringVar(value="0 معدة")
+        self.count_var = tk.StringVar(value="")
         tk.Label(
             status_frame, textvariable=self.count_var,
             font=("Arial", 10, "bold"), bg="#1B4F72", fg="#A8D5E5",
             padx=10, pady=5
         ).pack(side="right")
+    
+    # ==================================================================
+    # التاب 1: المعدات
+    # ==================================================================
+    
+    def _build_equipment_tab(self):
+        """بناء تاب المعدات"""
+        # ====== إطار البحث ======
+        search_frame = tk.Frame(self.tab_equipment, bg="#0f1626")
+        search_frame.pack(fill="x", padx=10, pady=5)
+        
+        tk.Label(search_frame, text="🔍 بحث:", font=("Arial", 11, "bold"),
+                bg="#0f1626", fg="white").pack(side="left", padx=5)
+        
+        self.search_var = tk.StringVar()
+        search_entry = tk.Entry(search_frame, textvariable=self.search_var,
+                               width=25, font=("Arial", 11))
+        search_entry.pack(side="left", padx=5)
+        search_entry.bind("<Return>", lambda e: self._do_search())
+        
+        # المصنع
+        tk.Label(search_frame, text="المصنع:", font=("Arial", 10),
+                bg="#0f1626", fg="white").pack(side="left", padx=5)
+        
+        self.manufacturer_var = tk.StringVar(value="الكل")
+        ttk.Combobox(search_frame, textvariable=self.manufacturer_var,
+                    values=["الكل", "SFFECO", "NAFFCO", "Sprinkler Brands"],
+                    width=15, state="readonly").pack(side="left", padx=5)
+        
+        # الفئة
+        tk.Label(search_frame, text="الفئة:", font=("Arial", 10),
+                bg="#0f1626", fg="white").pack(side="left", padx=5)
+        
+        self.category_var = tk.StringVar(value="الكل")
+        ttk.Combobox(search_frame, textvariable=self.category_var,
+                    values=["الكل", "package_units", "single_pumps", "split_case",
+                           "jockey", "controllers", "valves", "tanks", "sprinklers"],
+                    width=15, state="readonly").pack(side="left", padx=5)
+        
+        tk.Button(search_frame, text="🔍 بحث", command=self._do_search,
+                 bg="#27AE60", fg="white", font=("Arial", 10, "bold"),
+                 padx=15, pady=3, cursor="hand2").pack(side="left", padx=10)
+        
+        tk.Button(search_frame, text="📋 عرض الكل", command=self._load_equipment,
+                 bg="#2874A6", fg="white", font=("Arial", 10, "bold"),
+                 padx=15, pady=3, cursor="hand2").pack(side="left", padx=5)
+        
+        # ====== جدول المعدات ======
+        table_frame = tk.Frame(self.tab_equipment, bg="#0f1626")
+        table_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        
+        scroll_y = tk.Scrollbar(table_frame, orient="vertical")
+        
+        columns = ("#", "manufacturer", "model", "type", "flow", "pressure", "price", "package")
+        self.tree = ttk.Treeview(table_frame, columns=columns, show="headings",
+                                 yscrollcommand=scroll_y.set)
+        
+        headers = {
+            "#": "#",
+            "manufacturer": "المصنع",
+            "model": "الموديل",
+            "type": "النوع",
+            "flow": "التدفق (GPM)",
+            "pressure": "الضغط (bar)",
+            "price": "السعر (ريال)",
+            "package": "الحزمة"
+        }
+        widths = {"#": 40, "manufacturer": 130, "model": 200, "type": 180,
+                 "flow": 100, "pressure": 100, "price": 120, "package": 150}
+        
+        for col in columns:
+            self.tree.heading(col, text=headers[col])
+            self.tree.column(col, width=widths[col], anchor="center")
+        
+        self.tree.pack(side="left", fill="both", expand=True)
+        scroll_y.config(command=self.tree.yview)
+        scroll_y.pack(side="right", fill="y")
+        
+        self.tree.bind("<Double-1>", self._on_equipment_double_click)
         
         # ====== أزرار التصدير ======
-        export_frame = tk.Frame(self.root, bg="#0f1626")
+        export_frame = tk.Frame(self.tab_equipment, bg="#0f1626")
         export_frame.pack(fill="x", padx=10, pady=5)
         
-        tk.Button(
-            export_frame, text="📊 تصدير Excel",
-            command=self._export_excel,
-            bg="#27AE60", fg="white",
-            font=("Arial", 10, "bold"),
-            padx=15, pady=5, cursor="hand2"
-        ).pack(side="left", padx=5)
+        tk.Button(export_frame, text="📊 تصدير Excel", command=self._export_excel,
+                 bg="#27AE60", fg="white", font=("Arial", 10, "bold"),
+                 padx=15, pady=5, cursor="hand2").pack(side="left", padx=5)
         
-        tk.Button(
-            export_frame, text="📄 تصدير JSON",
-            command=self._export_json,
-            bg="#8E44AD", fg="white",
-            font=("Arial", 10, "bold"),
-            padx=15, pady=5, cursor="hand2"
-        ).pack(side="left", padx=5)
+        tk.Button(export_frame, text="📄 تصدير JSON", command=self._export_json,
+                 bg="#8E44AD", fg="white", font=("Arial", 10, "bold"),
+                 padx=15, pady=5, cursor="hand2").pack(side="left", padx=5)
     
-    def _load_all(self):
-        """عرض كل المعدات"""
+    # ==================================================================
+    # التاب 2: المشاريع
+    # ==================================================================
+    
+    def _build_projects_tab(self):
+        """بناء تاب المشاريع"""
+        # ====== إحصائيات سريعة ======
+        stats_frame = tk.Frame(self.tab_projects, bg="#1B4F72")
+        stats_frame.pack(fill="x", padx=10, pady=10)
+        
+        self.projects_stats_var = tk.StringVar(value="جاري التحميل...")
+        tk.Label(
+            stats_frame, textvariable=self.projects_stats_var,
+            font=("Arial", 12, "bold"),
+            bg="#1B4F72", fg="white",
+            pady=15
+        ).pack()
+        
+        # ====== جدول المشاريع ======
+        table_frame = tk.Frame(self.tab_projects, bg="#0f1626")
+        table_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        
+        scroll_y = tk.Scrollbar(table_frame, orient="vertical")
+        scroll_x = tk.Scrollbar(table_frame, orient="horizontal")
+        
+        columns = ("#", "name", "client", "fire", "alarm", "vent", "other", "total")
+        self.projects_tree = ttk.Treeview(
+            table_frame, columns=columns, show="headings",
+            yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set
+        )
+        
+        headers = {
+            "#": "#",
+            "name": "اسم المشروع",
+            "client": "العميل",
+            "fire": "إطفاء (ر.س)",
+            "alarm": "إنذار (ر.س)",
+            "vent": "تهوية (ر.س)",
+            "other": "أخرى (ر.س)",
+            "total": "الإجمالي (ر.س)"
+        }
+        widths = {"#": 40, "name": 280, "client": 200, "fire": 130,
+                 "alarm": 130, "vent": 130, "other": 130, "total": 150}
+        
+        for col in columns:
+            self.projects_tree.heading(col, text=headers[col])
+            self.projects_tree.column(col, width=widths[col], anchor="center")
+        
+        self.projects_tree.pack(side="left", fill="both", expand=True)
+        scroll_y.config(command=self.projects_tree.yview)
+        scroll_x.config(command=self.projects_tree.xview)
+        scroll_y.pack(side="right", fill="y")
+        scroll_x.pack(side="bottom", fill="x")
+        
+        self.projects_tree.bind("<Double-1>", self._on_project_double_click)
+    
+    # ==================================================================
+    # التاب 3: العملاء
+    # ==================================================================
+    
+    def _build_clients_tab(self):
+        """بناء تاب العملاء"""
+        table_frame = tk.Frame(self.tab_clients, bg="#0f1626")
+        table_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        
+        scroll_y = tk.Scrollbar(table_frame, orient="vertical")
+        
+        columns = ("#", "name", "company", "phone", "email", "city")
+        self.clients_tree = ttk.Treeview(
+            table_frame, columns=columns, show="headings",
+            yscrollcommand=scroll_y.set
+        )
+        
+        headers = {
+            "#": "#",
+            "name": "اسم العميل",
+            "company": "الشركة",
+            "phone": "الهاتف",
+            "email": "البريد",
+            "city": "المدينة"
+        }
+        widths = {"#": 40, "name": 250, "company": 200,
+                 "phone": 150, "email": 200, "city": 150}
+        
+        for col in columns:
+            self.clients_tree.heading(col, text=headers[col])
+            self.clients_tree.column(col, width=widths[col], anchor="center")
+        
+        self.clients_tree.pack(side="left", fill="both", expand=True)
+        scroll_y.config(command=self.clients_tree.yview)
+        scroll_y.pack(side="right", fill="y")
+    
+    # ==================================================================
+    # التاب 4: الإحصائيات
+    # ==================================================================
+    
+    def _build_stats_tab(self):
+        """بناء تاب الإحصائيات"""
+        container = tk.Frame(self.tab_stats, bg="#0f1626")
+        container.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        self.stats_text = tk.Text(
+            container,
+            font=("Consolas", 12),
+            bg="#1a1a2e", fg="#e0e0e0",
+            wrap="word", padx=20, pady=20
+        )
+        self.stats_text.pack(fill="both", expand=True)
+        
+        # زر تحديث
+        tk.Button(
+            container,
+            text="🔄 تحديث الإحصائيات",
+            command=self._load_stats,
+            bg="#27AE60", fg="white",
+            font=("Arial", 11, "bold"),
+            padx=20, pady=8, cursor="hand2"
+        ).pack(pady=10)
+    
+    # ==================================================================
+    # تحميل البيانات
+    # ==================================================================
+    
+    def _load_equipment(self):
+        """تحميل كل المعدات"""
         self.status_var.set("جاري التحميل...")
         self.results = self.search.list_all()
         self._display_results()
+        self.count_var.set(f"{len(self.results)} معدة")
+    
+    def _load_projects(self):
+        """تحميل المشاريع"""
+        self.projects = self.db.list_projects()
+        
+        # مسح الجدول
+        for item in self.projects_tree.get_children():
+            self.projects_tree.delete(item)
+        
+        # إضافة المشاريع
+        for i, proj in enumerate(self.projects, 1):
+            self.projects_tree.insert("", "end", values=(
+                i,
+                proj.get('project_name', '')[:60],
+                (proj.get('client_name') or '')[:40],
+                f"{proj.get('fire_suppression_cost', 0):,.0f}",
+                f"{proj.get('fire_alarm_cost', 0):,.0f}",
+                f"{proj.get('ventilation_cost', 0):,.0f}",
+                f"{proj.get('other_systems_cost', 0):,.0f}",
+                f"{proj.get('total_with_vat', 0):,.0f}"
+            ))
+        
+        # إحصائيات
+        stats = self.db.get_projects_stats()
+        if stats:
+            self.projects_stats_var.set(
+                f"📊 {stats.get('count', 0)} مشروع | "
+                f"الإجمالي: {stats.get('total', 0):,.0f} ريال"
+            )
+    
+    def _load_clients(self):
+        """تحميل العملاء"""
+        clients = self.db.list_clients()
+        
+        for item in self.clients_tree.get_children():
+            self.clients_tree.delete(item)
+        
+        for i, client in enumerate(clients, 1):
+            self.clients_tree.insert("", "end", values=(
+                i,
+                client.get('name', '')[:60],
+                client.get('company', '') or '',
+                client.get('phone', '') or '',
+                client.get('email', '') or '',
+                client.get('city', '') or ''
+            ))
+    
+    def _load_stats(self):
+        """عرض الإحصائيات"""
+        eq_count = self.db.get_equipment_count()
+        proj_count = self.db.get_projects_count()
+        client_count = self.db.get_clients_count()
+        stats = self.db.get_projects_stats()
+        
+        text = f"""
+╔══════════════════════════════════════════════════════════╗
+║              📊 إحصائيات المكتبة الشاملة                 ║
+╚══════════════════════════════════════════════════════════╝
+
+📦 المعدات:
+   • إجمالي المعدات: {eq_count}
+   • SFFECO: 33
+   • NAFFCO: 4
+   • الرشاشات: 10
+
+📊 المشاريع:
+   • إجمالي المشاريع: {proj_count}
+   • إجمالي العملاء: {client_count}
+
+💰 التكاليف الإجمالية للمشاريع:
+   • أنظمة الإطفاء: {stats.get('fire_total', 0):,.2f} ريال
+   • أنظمة الإنذار: {stats.get('alarm_total', 0):,.2f} ريال
+   • التهوية: {stats.get('ventilation_total', 0):,.2f} ريال
+   • أنظمة أخرى: {stats.get('other_total', 0):,.2f} ريال
+   ─────────────────────────────────────────────
+   • الإجمالي: {stats.get('total', 0):,.2f} ريال
+
+📈 توزيع النسب:
+   • أنظمة الإطفاء: {(stats.get('fire_total', 0) / max(stats.get('total', 1), 1)) * 100:.1f}%
+   • أنظمة الإنذار: {(stats.get('alarm_total', 0) / max(stats.get('total', 1), 1)) * 100:.1f}%
+   • التهوية: {(stats.get('ventilation_total', 0) / max(stats.get('total', 1), 1)) * 100:.1f}%
+   • أنظمة أخرى: {(stats.get('other_total', 0) / max(stats.get('total', 1), 1)) * 100:.1f}%
+"""
+        
+        self.stats_text.delete("1.0", tk.END)
+        self.stats_text.insert("1.0", text)
+    
+    # ==================================================================
+    # البحث والعرض
+    # ==================================================================
     
     def _do_search(self):
         """تنفيذ البحث"""
-        self.status_var.set("جاري البحث...")
-        
         search_text = self.search_var.get().strip()
         manufacturer = self.manufacturer_var.get()
         category = self.category_var.get()
         
-        # استعلام أساسي
-        min_flow = None
-        if self.min_flow_var.get().strip():
-            try:
-                min_flow = float(self.min_flow_var.get())
-            except ValueError:
-                pass
+        self.results = self.search.list_all()
         
-        max_price = None
-        if self.max_price_var.get().strip():
-            try:
-                max_price = float(self.max_price_var.get())
-            except ValueError:
-                pass
+        if manufacturer != "الكل":
+            self.results = [r for r in self.results if r.get('manufacturer_name') == manufacturer]
         
-        # استخدام find_pumps إذا البحث عن مضخات
-        if category in ["الكل", "package_units", "single_pumps", "split_case", "jockey"]:
-            self.results = self.search.find_pumps(
-                flow_gpm=min_flow,
-                manufacturer=manufacturer if manufacturer != "الكل" else None,
-                max_price=max_price
-            )
-        else:
-            # استعلام عام
-            self.results = self.search.list_all()
-            if manufacturer != "الكل":
-                self.results = [r for r in self.results if r['manufacturer_name'] == manufacturer]
-            if max_price:
-                self.results = [r for r in self.results if r.get('price_sar', 0) <= max_price]
-        
-        # فلترة حسب نص البحث
         if search_text:
             search_lower = search_text.lower()
             self.results = [
                 r for r in self.results
                 if search_lower in r.get('model', '').lower()
-                or search_lower in r.get('manufacturer_name', '').lower()
                 or search_lower in r.get('type', '').lower()
             ]
         
         self._display_results()
+        self.count_var.set(f"{len(self.results)} معدة")
     
     def _display_results(self):
-        """عرض النتائج في الجدول"""
-        # مسح القديم
+        """عرض النتائج"""
         for item in self.tree.get_children():
             self.tree.delete(item)
         
-        # إضافة النتائج
         for i, eq in enumerate(self.results, 1):
             specs = eq.get('specs', {})
             
-            # العمود: الحزمة
             package_info = ""
             if specs.get('is_complete_package'):
                 package_info = "✅ كاملة"
@@ -324,291 +475,126 @@ class EquipmentLibraryGUI:
                 f"{eq.get('price_sar', 0):,.0f}",
                 package_info
             ))
-        
-        self.count_var.set(f"{len(self.results)} معدة")
-        self.status_var.set("جاهز")
     
-    def _on_item_double_click(self, event):
-        """عرض تفاصيل المعدة عند النقر المزدوج"""
+    # ==================================================================
+    # الأحداث
+    # ==================================================================
+    
+    def _on_equipment_double_click(self, event):
+        """عرض تفاصيل معدة"""
         selection = self.tree.selection()
         if not selection:
             return
-        
         item = self.tree.item(selection[0])
         index = int(item['values'][0]) - 1
-        
         if 0 <= index < len(self.results):
-            equipment = self.results[index]
-            self._show_details(equipment)
+            self._show_equipment_details(self.results[index])
     
-    def _show_details(self, equipment):
-        """عرض تفاصيل معدة في نافذة منبثقة"""
+    def _on_project_double_click(self, event):
+        """عرض تفاصيل مشروع"""
+        selection = self.projects_tree.selection()
+        if not selection:
+            return
+        item = self.projects_tree.item(selection[0])
+        index = int(item['values'][0]) - 1
+        if 0 <= index < len(self.projects):
+            self._show_project_details(self.projects[index])
+    
+    def _show_equipment_details(self, equipment):
+        """عرض تفاصيل معدة"""
         window = tk.Toplevel(self.root)
         window.title(f"تفاصيل: {equipment['model']}")
-        window.geometry("600x600")
+        window.geometry("600x650")
         window.configure(bg="#0f1626")
         
-        # العنوان
-        tk.Label(
-            window,
-            text=f"🔧 {equipment['manufacturer_name']} - {equipment['model']}",
-            font=("Arial", 16, "bold"),
-            bg="#0f1626", fg="#3498DB",
-            pady=15
-        ).pack()
+        tk.Label(window, text=f"🔧 {equipment['manufacturer_name']} - {equipment['model']}",
+                font=("Arial", 16, "bold"), bg="#0f1626", fg="#3498DB",
+                pady=15).pack()
         
-        # المحتوى
-        text_frame = tk.Frame(window, bg="#0f1626")
-        text_frame.pack(fill="both", expand=True, padx=20, pady=10)
+        text = tk.Text(window, font=("Arial", 11), bg="#1a1a2e", fg="#e0e0e0",
+                      wrap="word", padx=15, pady=15)
+        text.pack(fill="both", expand=True, padx=20, pady=10)
         
-        text_widget = tk.Text(
-            text_frame,
-            font=("Arial", 11),
-            bg="#1a1a2e", fg="#e0e0e0",
-            wrap="word", padx=15, pady=15
-        )
-        text_widget.pack(fill="both", expand=True)
-        button_frame = tk.Frame(window, bg="#0f1626")
-        button_frame.pack(pady=10)
-        
-        tk.Button(
-            button_frame,
-            text="💰 تعديل السعر",
-            command=lambda: self._edit_price(equipment, window),
-            bg="#E67E22", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=20, pady=8, cursor="hand2"
-        ).pack(side="left", padx=5)
-        
-        tk.Button(
-            button_frame,
-            text="📊 تاريخ الأسعار",
-            command=lambda: self._show_price_history(equipment),
-            bg="#8E44AD", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=20, pady=8, cursor="hand2"
-        ).pack(side="left", padx=5)
-        
-        tk.Button(
-            button_frame,
-            text="❌ إغلاق",
-            command=window.destroy,
-            bg="#E74C3C", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=20, pady=8, cursor="hand2"
-        ).pack(side="left", padx=5)
-        # بناء النص
         specs = equipment.get('specs', {})
-        lines = []
-        lines.append(f"النوع: {equipment.get('type', '')}\n")
-        
+        content = []
+        content.append(f"النوع: {equipment.get('type', '')}\n")
         if specs.get('flow_gpm'):
-            lines.append(f"التدفق: {specs['flow_gpm']} GPM\n")
+            content.append(f"التدفق: {specs['flow_gpm']} GPM\n")
         if specs.get('pressure_bar'):
-            lines.append(f"الضغط: {specs['pressure_bar']} bar\n")
+            content.append(f"الضغط: {specs['pressure_bar']} bar\n")
         if specs.get('power_hp'):
-            lines.append(f"القدرة: {specs['power_hp']} HP\n")
-        if specs.get('electric_hp'):
-            lines.append(f"مضخة كهربائية: {specs['electric_hp']} HP\n")
-        if specs.get('diesel_hp'):
-            lines.append(f"مضخة ديزل: {specs['diesel_hp']} HP\n")
-        if specs.get('jockey_hp'):
-            lines.append(f"مضخة جوكي: {specs['jockey_hp']} HP\n")
-        if specs.get('weight_kg'):
-            lines.append(f"الوزن: {specs['weight_kg']} kg\n")
-        if specs.get('header_pipe'):
-            lines.append(f"الهيدر: {specs['header_pipe']}\n")
+            content.append(f"القدرة: {specs['power_hp']} HP\n")
         
-        lines.append(f"\n📦 محتويات الحزمة:\n")
+        content.append(f"\n📦 محتويات الحزمة:\n")
         if specs.get('is_complete_package'):
-            lines.append("   ✅ حزمة كاملة جاهزة\n")
+            content.append("   ✅ حزمة كاملة جاهزة\n")
         if specs.get('includes_jockey'):
-            lines.append("   ✅ تشمل مضخة جوكي\n")
+            content.append("   ✅ تشمل مضخة جوكي\n")
         if specs.get('includes_controller'):
-            lines.append("   ✅ تشمل لوحة تحكم\n")
-        if specs.get('includes_diesel'):
-            lines.append("   ✅ تشمل مضخة ديزل\n")
+            content.append("   ✅ تشمل لوحة تحكم\n")
         
         if equipment.get('certifications'):
-            lines.append(f"\n🏆 الاعتمادات: {' / '.join(equipment['certifications'])}\n")
+            content.append(f"\n🏆 الاعتمادات: {' / '.join(equipment['certifications'])}\n")
         
-        lines.append(f"\n💰 السعر: {equipment.get('price_sar', 0):,.0f} ريال\n")
+        content.append(f"\n💰 السعر: {equipment.get('price_sar', 0):,.0f} ريال\n")
         
-        if equipment.get('applications'):
-            lines.append(f"\n📋 التطبيقات:\n")
-            for app in equipment['applications']:
-                lines.append(f"   • {app}\n")
+        text.insert("1.0", "".join(content))
+        text.config(state="disabled")
         
-        if equipment.get('notes'):
-            lines.append(f"\n📝 ملاحظات: {equipment['notes']}\n")
-        
-        text_widget.insert("1.0", "".join(lines))
-        text_widget.config(state="disabled")
-        
-        # زر إغلاق
-        tk.Button(
-            window, text="إغلاق",
-            command=window.destroy,
-            bg="#E74C3C", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=30, pady=8, cursor="hand2"
-        ).pack(pady=10)
+        tk.Button(window, text="❌ إغلاق", command=window.destroy,
+                 bg="#E74C3C", fg="white", font=("Arial", 11, "bold"),
+                 padx=30, pady=8, cursor="hand2").pack(pady=10)
     
-    def _edit_price(self, equipment, parent_window):
-        """تعديل سعر معدة"""
-        # نافذة إدخال
-        price_window = tk.Toplevel(parent_window)
-        price_window.title("تعديل السعر")
-        price_window.geometry("400x250")
-        price_window.configure(bg="#0f1626")
+    def _show_project_details(self, project):
+        """عرض تفاصيل مشروع"""
+        window = tk.Toplevel(self.root)
+        window.title(f"تفاصيل: {project['project_name'][:50]}")
+        window.geometry("700x600")
+        window.configure(bg="#0f1626")
         
-        tk.Label(
-            price_window,
-            text=f"🔧 {equipment['model']}",
-            font=("Arial", 14, "bold"),
-            bg="#0f1626", fg="#3498DB",
-            pady=15
-        ).pack()
+        tk.Label(window, text=f"📊 {project['project_name']}",
+                font=("Arial", 14, "bold"), bg="#0f1626", fg="#3498DB",
+                pady=15, wraplength=650).pack()
         
-        tk.Label(
-            price_window,
-            text=f"السعر الحالي: {equipment.get('price_sar', 0):,.0f} ريال",
-            font=("Arial", 11),
-            bg="#0f1626", fg="white"
-        ).pack(pady=5)
+        text = tk.Text(window, font=("Consolas", 11), bg="#1a1a2e", fg="#e0e0e0",
+                      wrap="word", padx=15, pady=15)
+        text.pack(fill="both", expand=True, padx=20, pady=10)
         
-        tk.Label(
-            price_window,
-            text="السعر الجديد (ريال):",
-            font=("Arial", 11, "bold"),
-            bg="#0f1626", fg="#A8D5E5"
-        ).pack(pady=10)
+        content = f"""
+📋 معلومات المشروع:
+   • الاسم: {project.get('project_name', '')}
+   • العميل: {project.get('client_name') or 'غير محدد'}
+   • الجهة المنفذة: {project.get('service_provider', '')}
+
+💰 التكاليف:
+   • أنظمة الإطفاء: {project.get('fire_suppression_cost', 0):,.2f} ريال
+   • أنظمة الإنذار: {project.get('fire_alarm_cost', 0):,.2f} ريال
+   • التهوية: {project.get('ventilation_cost', 0):,.2f} ريال
+   • أنظمة أخرى: {project.get('other_systems_cost', 0):,.2f} ريال
+   ─────────────────────────────────────
+   • الإجمالي قبل الضريبة: {project.get('total_before_vat', 0):,.2f} ريال
+   • ضريبة 15%: {project.get('vat_15', 0):,.2f} ريال
+   • الإجمالي مع الضريبة: {project.get('total_with_vat', 0):,.2f} ريال
+
+📝 ملاحظات:
+   {project.get('notes', 'لا توجد ملاحظات')}
+"""
         
-        price_var = tk.StringVar(value=str(equipment.get('price_sar', 0)))
-        price_entry = tk.Entry(
-            price_window,
-            textvariable=price_var,
-            font=("Arial", 14),
-            width=15,
-            justify="center"
-        )
-        price_entry.pack(pady=5)
-        price_entry.select_range(0, "end")
-        price_entry.focus()
+        text.insert("1.0", content)
+        text.config(state="disabled")
         
-        def save_price():
-            try:
-                new_price = float(price_var.get())
-                if new_price < 0:
-                    messagebox.showerror("خطأ", "السعر يجب أن يكون موجباً")
-                    return
-                
-                # الحصول على ID المعدة من قاعدة البيانات
-                equipment_id = self._get_equipment_id(equipment['model'])
-                
-                if equipment_id:
-                    # تحديث في قاعدة البيانات
-                    self.search.conn.execute("""
-                        UPDATE equipment SET price_sar = ? WHERE id = ?
-                    """, (new_price, equipment_id))
-                    self.search.conn.commit()
-                    
-                    # تحديث في الذاكرة
-                    equipment['price_sar'] = new_price
-                    
-                    # إعادة عرض النتائج
-                    self._display_results()
-                    
-                    messagebox.showinfo("تم", f"✅ تم تحديث السعر إلى {new_price:,.0f} ريال")
-                    price_window.destroy()
-                    parent_window.destroy()
-                    
-                    # فتح التفاصيل مرة أخرى بالسعر الجديد
-                    self._show_details(equipment)
-                else:
-                    messagebox.showerror("خطأ", "لم يتم العثور على المعدة")
-                    
-            except ValueError:
-                messagebox.showerror("خطأ", "أدخل رقماً صحيحاً")
-        
-        tk.Button(
-            price_window,
-            text="💾 حفظ",
-            command=save_price,
-            bg="#27AE60", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=30, pady=8, cursor="hand2"
-        ).pack(pady=15)
-        
-        price_entry.bind("<Return>", lambda e: save_price())
+        tk.Button(window, text="❌ إغلاق", command=window.destroy,
+                 bg="#E74C3C", fg="white", font=("Arial", 11, "bold"),
+                 padx=30, pady=8, cursor="hand2").pack(pady=10)
     
-    def _get_equipment_id(self, model: str) -> int:
-        """الحصول على ID المعدة من قاعدة البيانات"""
-        cursor = self.search.conn.cursor()
-        cursor.execute("SELECT id FROM equipment WHERE model = ?", (model,))
-        row = cursor.fetchone()
-        return row[0] if row else None
-    
-    def _show_price_history(self, equipment):
-        """عرض تاريخ الأسعار"""
-        equipment_id = self._get_equipment_id(equipment['model'])
-        if not equipment_id:
-            messagebox.showerror("خطأ", "لم يتم العثور على المعدة")
-            return
-        
-        cursor = self.search.conn.cursor()
-        cursor.execute("""
-            SELECT price_sar, source, changed_at
-            FROM price_history
-            WHERE equipment_id = ?
-            ORDER BY changed_at DESC
-        """, (equipment_id,))
-        
-        history = cursor.fetchall()
-        
-        # نافذة التاريخ
-        hist_window = tk.Toplevel(self.root)
-        hist_window.title(f"تاريخ الأسعار - {equipment['model']}")
-        hist_window.geometry("500x400")
-        hist_window.configure(bg="#0f1626")
-        
-        tk.Label(
-            hist_window,
-            text=f"📊 تاريخ أسعار {equipment['model']}",
-            font=("Arial", 14, "bold"),
-            bg="#0f1626", fg="#3498DB",
-            pady=15
-        ).pack()
-        
-        # قائمة
-        listbox = tk.Listbox(
-            hist_window,
-            font=("Consolas", 11),
-            bg="#1a1a2e", fg="#e0e0e0",
-            width=60, height=15
-        )
-        listbox.pack(padx=20, pady=10, fill="both", expand=True)
-        
-        for row in history:
-            price, source, date = row
-            listbox.insert(tk.END, f"{date[:16]} | {price:>10,.0f} ريال | {source}")
-        
-        if not history:
-            listbox.insert(tk.END, "لا يوجد سجل أسعار بعد")
-        
-        tk.Button(
-            hist_window,
-            text="إغلاق",
-            command=hist_window.destroy,
-            bg="#E74C3C", fg="white",
-            font=("Arial", 11, "bold"),
-            padx=30, pady=8, cursor="hand2"
-        ).pack(pady=10)
+    # ==================================================================
+    # التصدير
+    # ==================================================================
     
     def _export_excel(self):
         """تصدير Excel"""
         if not self.results:
-            messagebox.showwarning("تنبيه", "لا توجد نتائج للتصدير")
+            messagebox.showwarning("تنبيه", "لا توجد نتائج")
             return
         
         try:
@@ -618,34 +604,28 @@ class EquipmentLibraryGUI:
             messagebox.showerror("خطأ", "مكتبة openpyxl غير مثبتة")
             return
         
-        # ← المسار الافتراضي: exports/
         exports_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'exports')
         os.makedirs(exports_dir, exist_ok=True)
         
-        from datetime import datetime
         default_name = f"equipment_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-        
         filepath = filedialog.asksaveasfilename(
             title="حفظ Excel",
-            initialdir=exports_dir,           # ← يبدأ من exports
-            initialfile=default_name,          # ← اسم افتراضي
+            initialdir=exports_dir,
+            initialfile=default_name,
             defaultextension=".xlsx",
             filetypes=[("Excel", "*.xlsx")]
         )
         if not filepath:
             return
         
-        
         wb = Workbook()
         ws = wb.active
         ws.title = "المعدات"
         ws.sheet_view.rightToLeft = True
         
-        # العناوين
-        headers = ["#", "المصنع", "الموديل", "النوع", "التدفق (GPM)", "الضغط (bar)", "السعر (ريال)", "الحزمة"]
+        headers = ["#", "المصنع", "الموديل", "النوع", "التدفق", "الضغط", "السعر", "الحزمة"]
         ws.append(headers)
         
-        # تنسيق العناوين
         header_fill = PatternFill(start_color="1B4F72", end_color="1B4F72", fill_type="solid")
         header_font = Font(bold=True, color="FFFFFF", size=12)
         for cell in ws[1]:
@@ -653,29 +633,18 @@ class EquipmentLibraryGUI:
             cell.font = header_font
             cell.alignment = Alignment(horizontal="center")
         
-        # البيانات
         for i, eq in enumerate(self.results, 1):
             specs = eq.get('specs', {})
-            package = ""
-            if specs.get('is_complete_package'):
-                package = "كاملة"
-            elif specs.get('includes_jockey'):
-                package = "مع جوكي"
+            package = "كاملة" if specs.get('is_complete_package') else \
+                     "مع جوكي" if specs.get('includes_jockey') else ""
             
             ws.append([
-                i,
-                eq.get('manufacturer_name', ''),
-                eq.get('model', ''),
-                eq.get('type', ''),
-                specs.get('flow_gpm', 0),
-                specs.get('pressure_bar', 0),
-                eq.get('price_sar', 0),
-                package
+                i, eq.get('manufacturer_name', ''), eq.get('model', ''),
+                eq.get('type', ''), specs.get('flow_gpm', 0),
+                specs.get('pressure_bar', 0), eq.get('price_sar', 0), package
             ])
         
-        # ضبط عرض الأعمدة
-        widths = [5, 15, 25, 25, 15, 15, 18, 15]
-        for i, width in enumerate(widths, 1):
+        for i, width in enumerate([5, 15, 25, 25, 15, 15, 18, 15], 1):
             ws.column_dimensions[chr(64 + i)].width = width
         
         wb.save(filepath)
@@ -684,18 +653,13 @@ class EquipmentLibraryGUI:
     def _export_json(self):
         """تصدير JSON"""
         if not self.results:
-            messagebox.showwarning("تنبيه", "لا توجد نتائج للتصدير")
+            messagebox.showwarning("تنبيه", "لا توجد نتائج")
             return
         
-        import json
-        from datetime import datetime
-        
-        # ← المسار الافتراضي: exports/
         exports_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'exports')
         os.makedirs(exports_dir, exist_ok=True)
         
         default_name = f"equipment_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        
         filepath = filedialog.asksaveasfilename(
             title="حفظ JSON",
             initialdir=exports_dir,
@@ -706,8 +670,6 @@ class EquipmentLibraryGUI:
         if not filepath:
             return
         
-        
-        # تبسيط البيانات
         export_data = []
         for eq in self.results:
             export_data.append({
@@ -726,6 +688,9 @@ class EquipmentLibraryGUI:
     
     def run(self):
         """تشغيل الواجهة"""
+        # تحميل العملاء والإحصائيات عند البدء
+        self._load_clients()
+        self._load_stats()
         self.root.mainloop()
 
 
