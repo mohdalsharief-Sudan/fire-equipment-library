@@ -68,6 +68,8 @@ class EquipmentDatabase:
                 description TEXT,
                 specs TEXT,
                 price_sar REAL,
+                price_type TEXT DEFAULT 'supply_and_install',
+                supplier_price REAL DEFAULT 0,
                 currency TEXT DEFAULT 'SAR',
                 datasheet_path TEXT,
                 curve_path TEXT,
@@ -81,7 +83,7 @@ class EquipmentDatabase:
                 FOREIGN KEY (manufacturer_id) REFERENCES manufacturers(id),
                 FOREIGN KEY (category_id) REFERENCES categories(id)
             )
-        """)
+                    """)
         
         # سجل الأسعار
         cursor.execute("""
@@ -185,18 +187,22 @@ class EquipmentDatabase:
     def add_equipment(self, manufacturer_id: int, category_id: int,
                      model: str, type_: str, specs: Dict,
                      price_sar: float = 0, certifications: List[str] = None,
-                     applications: List[str] = None, notes: str = "") -> int:
+                     applications: List[str] = None, notes: str = "",
+                     price_type: str = "supply_and_install",
+                     supplier_price: float = 0) -> int:
         """إضافة معدة"""
         cursor = self.conn.cursor()
         cursor.execute("""
             INSERT INTO equipment 
             (manufacturer_id, category_id, model, type, specs, price_sar, 
-             certifications, applications, notes)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+             price_type, supplier_price, certifications, applications, notes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             manufacturer_id, category_id, model, type_,
             json.dumps(specs),
             price_sar,
+            price_type,
+            supplier_price,
             json.dumps(certifications or []),
             json.dumps(applications or []),
             notes

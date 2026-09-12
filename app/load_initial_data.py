@@ -92,11 +92,28 @@ def main():
             logger.info(f"   ✅ Simplex Alarm: {count} معدة")
     else:
         logger.warning(f"⚠️ ملف Simplex غير موجود: {simplex_file}")    
+    
+    # ============ GENT / ZETA ============
+    print("\n📦 تحميل GENT / ZETA...")
+    
+    gent_zeta_file = os.path.join(base_dir, 'data', 'manufacturers', 'gent_zeta.json')
+    if os.path.exists(gent_zeta_file):
+        gent_zeta_id = loader.load_manufacturer(gent_zeta_file)
+        logger.info(f"✅ GENT/ZETA ID: {gent_zeta_id}")
+        
+        gent_zeta_alarm = os.path.join(base_dir, 'data', 'equipment', 'alarm', 'gent_zeta_alarm.json')
+        if os.path.exists(gent_zeta_alarm):
+            count = loader.load_equipment_file(gent_zeta_alarm, 'alarm_systems', gent_zeta_id)
+            logger.info(f"   ✅ GENT/ZETA Alarm: {count} معدة")
+    else:
+        logger.warning(f"⚠️ ملف GENT/ZETA غير موجود")
+        
     # ============ الإحصائيات ============
     print("\n" + "=" * 60)
     print("📊 إحصائيات قاعدة البيانات")
     print("=" * 60)
     print(f"✅ عدد المعدات الإجمالي: {db.get_equipment_count()}")
+    
     
     # عدد لكل مصنع
     cursor = db.conn.cursor()

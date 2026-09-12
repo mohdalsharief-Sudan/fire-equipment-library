@@ -48,6 +48,13 @@ class EquipmentLoader:
         
         count = 0
         for item in data.get('equipment', []):
+            # استخراج الحقول الجديدة
+            price_type = item.get('price_type', 'supply_and_install')
+            supplier_price = item.get('supplier_price', 0)
+            
+            # إذا كان السعر "supply_only" نحسب السعر النهائي
+            # (هذا اختياري - يمكن تركه كما هو)
+            
             self.db.add_equipment(
                 manufacturer_id=manufacturer_id,
                 category_id=category_id,
@@ -57,7 +64,9 @@ class EquipmentLoader:
                 price_sar=item.get('price_sar', 0),
                 certifications=item.get('certifications', []),
                 applications=item.get('applications', []),
-                notes=item.get('notes', '')
+                notes=item.get('notes', ''),
+                price_type=price_type,
+                supplier_price=supplier_price,
             )
             count += 1
         

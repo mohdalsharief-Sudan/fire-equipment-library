@@ -1,7 +1,8 @@
 {
   "category": "alarm_systems",
-  "category_ar": "أنظمة الإنذار - Simplex",
+  "category_ar": "أنظمة الإنذار - Simplex (أضواء الخيالة)",
   "supplier": "AKCO - أضواء الخيالة",
+  "price_note": "الأسعار = سعر مورد + إضافة تركيب وربح",
   "price_rule": {
     "standard_items": 375,
     "control_panels": 5000,
@@ -17,14 +18,12 @@
         "loops": 5,
         "cards_per_loop": 1,
         "points_per_card": 250,
-        "battery_backup": true,
-        "supplier_price_sar": 16900,
-        "installation_charge_sar": 5000,
-        "price_type": "supply_and_install"
+        "battery_backup": true
       },
       "price_sar": 21900,
+      "price_type": "supply_only",
+      "supplier_price": 16900,
       "certifications": ["UL", "FM"],
-      "applications": ["Buildings", "Commercial", "Industrial"],
       "notes": "سعر المورد 16,900 + 5,000 تركيب وبرمجة = 21,900 ريال"
     },
     {
@@ -35,11 +34,11 @@
         "manufacturer": "Simplex",
         "sensor_type": "photoelectric",
         "addressable": true,
-        "base_included": true,
-        "supplier_price_sar": 120,
-        "installation_charge_sar": 375
+        "base_included": true
       },
       "price_sar": 495,
+      "price_type": "supply_only",
+      "supplier_price": 120,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 120 + 375 تركيب وربح = 495 ريال"
     },
@@ -51,11 +50,11 @@
         "manufacturer": "Simplex",
         "sensor_type": "heat",
         "addressable": true,
-        "base_included": true,
-        "supplier_price_sar": 110,
-        "installation_charge_sar": 375
+        "base_included": true
       },
       "price_sar": 485,
+      "price_type": "supply_only",
+      "supplier_price": 110,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 110 + 375 تركيب وربح = 485 ريال"
     },
@@ -67,11 +66,11 @@
         "manufacturer": "Simplex",
         "addressable": true,
         "double_action": true,
-        "led": true,
-        "supplier_price_sar": 170,
-        "installation_charge_sar": 375
+        "led": true
       },
       "price_sar": 545,
+      "price_type": "supply_only",
+      "supplier_price": 170,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 170 + 375 تركيب وربح = 545 ريال"
     },
@@ -82,11 +81,11 @@
       "specs": {
         "manufacturer": "Simplex",
         "material": "cast_metal",
-        "waterproof": true,
-        "supplier_price_sar": 160,
-        "installation_charge_sar": 375
+        "waterproof": true
       },
       "price_sar": 535,
+      "price_type": "supply_only",
+      "supplier_price": 160,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 160 + 375 تركيب وربح = 535 ريال"
     },
@@ -97,11 +96,11 @@
       "specs": {
         "manufacturer": "Simplex",
         "waterproof": true,
-        "for_pull_station": true,
-        "supplier_price_sar": 180,
-        "installation_charge_sar": 375
+        "for_pull_station": true
       },
       "price_sar": 555,
+      "price_type": "supply_only",
+      "supplier_price": 180,
       "certifications": ["UL"],
       "notes": "سعر المورد 180 + 375 تركيب وربح = 555 ريال"
     },
@@ -112,11 +111,11 @@
       "specs": {
         "manufacturer": "Simplex",
         "addressable": true,
-        "idnet_supervised": true,
-        "supplier_price_sar": 79,
-        "installation_charge_sar": 375
+        "idnet_supervised": true
       },
       "price_sar": 454,
+      "price_type": "supply_only",
+      "supplier_price": 79,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 79 + 375 تركيب وربح = 454 ريال"
     },
@@ -129,11 +128,11 @@
         "wall_mount": true,
         "color": "red",
         "addressable": true,
-        "indoor": true,
-        "supplier_price_sar": 212,
-        "installation_charge_sar": 375
+        "indoor": true
       },
       "price_sar": 587,
+      "price_type": "supply_only",
+      "supplier_price": 212,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 212 + 375 تركيب وربح = 587 ريال"
     },
@@ -146,11 +145,11 @@
         "wall_mount": true,
         "waterproof": true,
         "addressable": true,
-        "color": "red",
-        "supplier_price_sar": 250,
-        "installation_charge_sar": 375
+        "color": "red"
       },
       "price_sar": 625,
+      "price_type": "supply_only",
+      "supplier_price": 250,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 250 + 375 تركيب وربح = 625 ريال"
     },
@@ -162,11 +161,11 @@
         "manufacturer": "Simplex",
         "wall_mount": true,
         "waterproof": true,
-        "color": "red",
-        "supplier_price_sar": 55,
-        "installation_charge_sar": 375
+        "color": "red"
       },
       "price_sar": 430,
+      "price_type": "supply_only",
+      "supplier_price": 55,
       "certifications": ["UL"],
       "notes": "سعر المورد 55 + 375 تركيب وربح = 430 ريال"
     },
@@ -177,11 +176,11 @@
       "specs": {
         "manufacturer": "Simplex",
         "cards": 2,
-        "wired_media": true,
-        "supplier_price_sar": 1950,
-        "installation_charge_sar": 375
+        "wired_media": true
       },
       "price_sar": 2325,
+      "price_type": "supply_only",
+      "supplier_price": 1950,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 1,950 + 375 تركيب وربح = 2,325 ريال"
     },
@@ -192,11 +191,11 @@
       "specs": {
         "manufacturer": "Simplex",
         "addressable": true,
-        "set_includes_remote_led": true,
-        "supplier_price_sar": 420,
-        "installation_charge_sar": 375
+        "set_includes_remote_led": true
       },
       "price_sar": 795,
+      "price_type": "supply_only",
+      "supplier_price": 420,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 420 + 375 تركيب وربح = 795 ريال"
     },
@@ -206,11 +205,11 @@
       "type_ar": "LED بعيد للدكت",
       "specs": {
         "manufacturer": "Simplex",
-        "for_duct_detector": true,
-        "supplier_price_sar": 32,
-        "installation_charge_sar": 375
+        "for_duct_detector": true
       },
       "price_sar": 407,
+      "price_type": "supply_only",
+      "supplier_price": 32,
       "certifications": ["UL"],
       "notes": "سعر المورد 32 + 375 تركيب وربح = 407 ريال"
     },
@@ -220,11 +219,11 @@
       "type_ar": "لوحة تكرار مع علبة خلفية",
       "specs": {
         "manufacturer": "Simplex",
-        "with_back_box": true,
-        "supplier_price_sar": 1650,
-        "installation_charge_sar": 5000
+        "with_back_box": true
       },
       "price_sar": 6650,
+      "price_type": "supply_only",
+      "supplier_price": 1650,
       "certifications": ["UL", "FM"],
       "notes": "سعر المورد 1,650 + 5,000 برمجة = 6,650 ريال"
     }

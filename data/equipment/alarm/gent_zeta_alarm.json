@@ -1,0 +1,111 @@
+{
+  "category": "alarm_systems",
+  "category_ar": "أنظمة الإنذار - GENT / ZETA",
+  "supplier": "شركة شاجي - برج طويق",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "available_brands": ["GENT", "ZETA"],
+  "equipment": [
+    {
+      "model": "GENT-ZETA-PANEL-6LOOP",
+      "type": "fire_alarm_control_panel",
+      "type_ar": "لوحة تحكم معنونة 6 لوب",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "loops": 6,
+        "certification": "EN54"
+      },
+      "price_sar": 23500,
+      "certifications": ["EN54", "UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب - GENT أو ZETA"
+    },
+    {
+      "model": "GENT-ZETA-REPEATER-LCD",
+      "type": "repeater_panel",
+      "type_ar": "لوحة تكرار شاشة LCD",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "display": "LCD"
+      },
+      "price_sar": 16500,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "GENT-ZETA-ALARM-WORKSTATION",
+      "type": "alarm_workstation",
+      "type_ar": "محطة مراقبة إنذار متكاملة",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "includes": ["PC", "TV Monitor", "Devices"]
+      },
+      "price_sar": 47000,
+      "certifications": ["EN54"],
+      "notes": "محطة عمل كاملة: PC + شاشة TV + أجهزة - سعر شامل"
+    },
+    {
+      "model": "GENT-ZETA-SMOKE-DETECTOR",
+      "type": "smoke_detector",
+      "type_ar": "كاشف دخان ضوئي ذكي معنون",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "sensor_type": "photoelectric",
+        "addressable": true,
+        "certification": "EN54"
+      },
+      "price_sar": 415,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "GENT-ZETA-SOUNDER-FLASHER",
+      "type": "sounder_with_flasher",
+      "type_ar": "سارينة مع فلاشر خارجية",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "weatherproof": true
+      },
+      "price_sar": 425,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "GENT-ZETA-MM",
+      "type": "monitor_module",
+      "type_ar": "وحدة مراقبة MM معنونة",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "module_type": "Monitor",
+        "addressable": true
+      },
+      "price_sar": 410,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "GENT-ZETA-CM",
+      "type": "control_module",
+      "type_ar": "وحدة تحكم CM معنونة",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "module_type": "Control",
+        "addressable": true
+      },
+      "price_sar": 425,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "GENT-ZETA-IFU",
+      "type": "interface_module",
+      "type_ar": "وحدة ربط IFU معنونة",
+      "specs": {
+        "manufacturer": "GENT / ZETA",
+        "module_type": "Interface",
+        "addressable": true
+      },
+      "price_sar": 415,
+      "certifications": ["EN54"],
+      "notes": "سعر شامل التوريد والتركيب"
+    }
+  ]
+}
