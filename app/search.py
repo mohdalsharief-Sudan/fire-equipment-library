@@ -207,18 +207,20 @@ class EquipmentSearch:
     def print_results(self, results: List[Dict]):
         """طباعة نتائج البحث"""
         if not results:
-            print("\n❌ لا توجد نتائج")
+            print("\n[!] لا توجد نتائج")
             return
         
         print(f"\n{'=' * 60}")
-        print(f"🔍 نتائج البحث ({len(results)} نتيجة)")
+        print(f"[*] نتائج البحث ({len(results)} نتيجة)")
         print('=' * 60)
         
         for i, pump in enumerate(results, 1):
-            specs = pump['specs']
-            print(f"\n{i}. {pump['manufacturer_name']} - {pump['model']}")
-            print(f"   التدفق: {specs.get('flow_gpm', 0)} GPM @ {specs.get('pressure_bar', 0)} bar")
-            print(f"   السعر: {pump.get('price_sar', 0):,.0f} ريال")
+            specs = pump.get('specs', {})
+            print(f"\n{i}. {pump.get('manufacturer_name', '')} - {pump.get('model', '')}")
+            if specs.get('flow_gpm'):
+                print(f"   التدفق: {specs.get('flow_gpm')} GPM @ {specs.get('pressure_bar', 0)} bar")
+            if pump.get('price_sar'):
+                print(f"   السعر: {pump.get('price_sar', 0):,.0f} ريال")
     
     def close(self):
         self.conn.close()

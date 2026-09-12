@@ -77,7 +77,21 @@ def main():
     if os.path.exists(sprinklers_file):
         count = loader.load_equipment_file(sprinklers_file, 'sprinklers', sprinkler_brands_id)
         logger.info(f"   ✅ {sprinklers_file}: {count}")
+    
+    # ============ Simplex ============
+    print("\n📦 تحميل Simplex...")
+    
+    simplex_file = os.path.join(base_dir, 'data', 'manufacturers', 'simplex.json')
+    if os.path.exists(simplex_file):
+        simplex_id = loader.load_manufacturer(simplex_file)
+        logger.info(f"✅ Simplex ID: {simplex_id}")
         
+        simplex_alarm = os.path.join(base_dir, 'data', 'equipment', 'alarm', 'simplex_alarm.json')
+        if os.path.exists(simplex_alarm):
+            count = loader.load_equipment_file(simplex_alarm, 'alarm_systems', simplex_id)
+            logger.info(f"   ✅ Simplex Alarm: {count} معدة")
+    else:
+        logger.warning(f"⚠️ ملف Simplex غير موجود: {simplex_file}")    
     # ============ الإحصائيات ============
     print("\n" + "=" * 60)
     print("📊 إحصائيات قاعدة البيانات")

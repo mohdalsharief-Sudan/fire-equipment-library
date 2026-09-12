@@ -1,0 +1,232 @@
+{
+  "category": "alarm_systems",
+  "category_ar": "أنظمة الإنذار - Simplex",
+  "supplier": "AKCO - أضواء الخيالة",
+  "price_rule": {
+    "standard_items": 375,
+    "control_panels": 5000,
+    "repeaters": 5000
+  },
+  "equipment": [
+    {
+      "model": "SIMPLEX-4100-9701",
+      "type": "fire_alarm_control_panel",
+      "type_ar": "لوحة تحكم إنذار 5 لوب",
+      "specs": {
+        "manufacturer": "Simplex",
+        "loops": 5,
+        "cards_per_loop": 1,
+        "points_per_card": 250,
+        "battery_backup": true,
+        "supplier_price_sar": 16900,
+        "installation_charge_sar": 5000,
+        "price_type": "supply_and_install"
+      },
+      "price_sar": 21900,
+      "certifications": ["UL", "FM"],
+      "applications": ["Buildings", "Commercial", "Industrial"],
+      "notes": "سعر المورد 16,900 + 5,000 تركيب وبرمجة = 21,900 ريال"
+    },
+    {
+      "model": "SIMPLEX-4098-9714",
+      "type": "photo_sensor",
+      "type_ar": "كاشف دخان ضوئي معنون",
+      "specs": {
+        "manufacturer": "Simplex",
+        "sensor_type": "photoelectric",
+        "addressable": true,
+        "base_included": true,
+        "supplier_price_sar": 120,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 495,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 120 + 375 تركيب وربح = 495 ريال"
+    },
+    {
+      "model": "SIMPLEX-4098-9733",
+      "type": "heat_sensor",
+      "type_ar": "كاشف حرارة معنون",
+      "specs": {
+        "manufacturer": "Simplex",
+        "sensor_type": "heat",
+        "addressable": true,
+        "base_included": true,
+        "supplier_price_sar": 110,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 485,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 110 + 375 تركيب وربح = 485 ريال"
+    },
+    {
+      "model": "SIMPLEX-4099-9005",
+      "type": "manual_pull_station",
+      "type_ar": "محطة سحب يدوي معنونة LED",
+      "specs": {
+        "manufacturer": "Simplex",
+        "addressable": true,
+        "double_action": true,
+        "led": true,
+        "supplier_price_sar": 170,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 545,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 170 + 375 تركيب وربح = 545 ريال"
+    },
+    {
+      "model": "SIMPLEX-2099-9139",
+      "type": "manual_pull_station_wp",
+      "type_ar": "محطة سحب يدوي مقاومة للماء",
+      "specs": {
+        "manufacturer": "Simplex",
+        "material": "cast_metal",
+        "waterproof": true,
+        "supplier_price_sar": 160,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 535,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 160 + 375 تركيب وربح = 535 ريال"
+    },
+    {
+      "model": "SIMPLEX-2975-9211",
+      "type": "back_box_wp",
+      "type_ar": "علبة خلفية مقاومة للماء",
+      "specs": {
+        "manufacturer": "Simplex",
+        "waterproof": true,
+        "for_pull_station": true,
+        "supplier_price_sar": 180,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 555,
+      "certifications": ["UL"],
+      "notes": "سعر المورد 180 + 375 تركيب وربح = 555 ريال"
+    },
+    {
+      "model": "SIMPLEX-4090-9001",
+      "type": "iam_supervised",
+      "type_ar": "وحدة مراقبة IAM",
+      "specs": {
+        "manufacturer": "Simplex",
+        "addressable": true,
+        "idnet_supervised": true,
+        "supplier_price_sar": 79,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 454,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 79 + 375 تركيب وربح = 454 ريال"
+    },
+    {
+      "model": "SIMPLEX-49AV-WRF",
+      "type": "addressable_sounder",
+      "type_ar": "سارينة إنذار معنونة داخلية",
+      "specs": {
+        "manufacturer": "Simplex",
+        "wall_mount": true,
+        "color": "red",
+        "addressable": true,
+        "indoor": true,
+        "supplier_price_sar": 212,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 587,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 212 + 375 تركيب وربح = 587 ريال"
+    },
+    {
+      "model": "SIMPLEX-49AV-WRFO",
+      "type": "addressable_sounder_wp",
+      "type_ar": "سارينة إنذار مقاومة للماء",
+      "specs": {
+        "manufacturer": "Simplex",
+        "wall_mount": true,
+        "waterproof": true,
+        "addressable": true,
+        "color": "red",
+        "supplier_price_sar": 250,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 625,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 250 + 375 تركيب وربح = 625 ريال"
+    },
+    {
+      "model": "SIMPLEX-49WPBB-AVVOWR",
+      "type": "back_box_av",
+      "type_ar": "علبة خلفية للسارينة",
+      "specs": {
+        "manufacturer": "Simplex",
+        "wall_mount": true,
+        "waterproof": true,
+        "color": "red",
+        "supplier_price_sar": 55,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 430,
+      "certifications": ["UL"],
+      "notes": "سعر المورد 55 + 375 تركيب وربح = 430 ريال"
+    },
+    {
+      "model": "SIMPLEX-4100-6078",
+      "type": "network_interface_card",
+      "type_ar": "كرت واجهة شبكة",
+      "specs": {
+        "manufacturer": "Simplex",
+        "cards": 2,
+        "wired_media": true,
+        "supplier_price_sar": 1950,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 2325,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 1,950 + 375 تركيب وربح = 2,325 ريال"
+    },
+    {
+      "model": "SIMPLEX-4098-9755",
+      "type": "duct_detector",
+      "type_ar": "كاشف دخان لمجاري الهواء (دكت)",
+      "specs": {
+        "manufacturer": "Simplex",
+        "addressable": true,
+        "set_includes_remote_led": true,
+        "supplier_price_sar": 420,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 795,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 420 + 375 تركيب وربح = 795 ريال"
+    },
+    {
+      "model": "SIMPLEX-2098-9808",
+      "type": "remote_led",
+      "type_ar": "LED بعيد للدكت",
+      "specs": {
+        "manufacturer": "Simplex",
+        "for_duct_detector": true,
+        "supplier_price_sar": 32,
+        "installation_charge_sar": 375
+      },
+      "price_sar": 407,
+      "certifications": ["UL"],
+      "notes": "سعر المورد 32 + 375 تركيب وربح = 407 ريال"
+    },
+    {
+      "model": "SIMPLEX-4603-9101",
+      "type": "repeater_panel",
+      "type_ar": "لوحة تكرار مع علبة خلفية",
+      "specs": {
+        "manufacturer": "Simplex",
+        "with_back_box": true,
+        "supplier_price_sar": 1650,
+        "installation_charge_sar": 5000
+      },
+      "price_sar": 6650,
+      "certifications": ["UL", "FM"],
+      "notes": "سعر المورد 1,650 + 5,000 برمجة = 6,650 ريال"
+    }
+  ]
+}
