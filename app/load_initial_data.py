@@ -107,7 +107,32 @@ def main():
             logger.info(f"   ✅ GENT/ZETA Alarm: {count} معدة")
     else:
         logger.warning(f"⚠️ ملف GENT/ZETA غير موجود")
+    
+    # ============ HI-TECH (FM-200) ============
+    print("\n📦 تحميل HI-TECH (FM-200)...")
+    
+    hitech_file = os.path.join(base_dir, 'data', 'manufacturers', 'hi-tech.json')
+    if os.path.exists(hitech_file):
+        hitech_id = loader.load_manufacturer(hitech_file)
+        logger.info(f"✅ HI-TECH ID: {hitech_id}")
         
+        hitech_equipment = os.path.join(base_dir, 'data', 'equipment', 'gas_systems', 'hi-tech_fm200.json')
+        if os.path.exists(hitech_equipment):
+            count = loader.load_equipment_file(hitech_equipment, 'gas_systems', hitech_id)
+            logger.info(f"   ✅ HI-TECH FM-200: {count} معدة")
+    
+    # ============ ANSUL / PYRO-CHEM ============
+    print("\n📦 تحميل ANSUL / PYRO-CHEM...")
+    
+    ansul_file = os.path.join(base_dir, 'data', 'manufacturers', 'ansul_pyrochem.json')
+    if os.path.exists(ansul_file):
+        ansul_id = loader.load_manufacturer(ansul_file)
+        logger.info(f"✅ ANSUL ID: {ansul_id}")
+        
+        ansul_equipment = os.path.join(base_dir, 'data', 'equipment', 'gas_systems', 'ansul_kitchen.json')
+        if os.path.exists(ansul_equipment):
+            count = loader.load_equipment_file(ansul_equipment, 'gas_systems', ansul_id)
+            logger.info(f"   ✅ ANSUL Kitchen: {count} معدة")    
     # ============ الإحصائيات ============
     print("\n" + "=" * 60)
     print("📊 إحصائيات قاعدة البيانات")

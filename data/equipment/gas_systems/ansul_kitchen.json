@@ -1,0 +1,36 @@
+{
+  "category": "gas_systems",
+  "category_ar": "أنظمة إخماد حرائق المطابخ - ANSUL",
+  "supplier": "برج طويق - شركة المهيدب",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "ANSUL-KITCHEN-10L",
+      "type": "kitchen_hood_system",
+      "type_ar": "نظام إخماد حريق المطابخ - 10 لتر",
+      "specs": {
+        "manufacturer": "ANSUL / PYRO-CHEM",
+        "capacity_liters": 10,
+        "application": "kitchen_hood",
+        "includes": ["cylinders", "nozzles", "detection"]
+      },
+      "price_sar": 9435,
+      "certifications": ["UL", "FM"],
+      "applications": ["Commercial Kitchens", "Restaurants", "Hotels"],
+      "notes": "نظام إخماد حرائق المطابخ - سعر شامل"
+    },
+    {
+      "model": "ANSUL-KITCHEN-SYSTEM",
+      "type": "kitchen_hood_system_complete",
+      "type_ar": "نظام إخماد حريق المطابخ - متكامل",
+      "specs": {
+        "manufacturer": "ANSUL / PYRO-CHEM",
+        "application": "kitchen_hood",
+        "includes": ["cylinders", "sprinklers", "nozzles", "detection", "control_panel"]
+      },
+      "price_sar": 165000,
+      "certifications": ["UL", "FM"],
+      "notes": "نظام كامل لحرائق المطابخ (أسطوانات + رشاشات + بنسات) - سعر مقطوعية"
+    }
+  ]
+}

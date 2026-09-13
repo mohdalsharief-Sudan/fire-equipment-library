@@ -1,0 +1,65 @@
+{
+  "category": "gas_systems",
+  "category_ar": "أنظمة الإطفاء بالغاز - HI-TECH",
+  "supplier": "برج طويق - شركة المهيدب",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "HITECH-FM200-16KG",
+      "type": "fm200_cylinder",
+      "type_ar": "أسطوانة FM-200 - 16 كجم",
+      "specs": {
+        "manufacturer": "HI-TECH",
+        "gas_type": "FM-200",
+        "capacity_kg": 16,
+        "certification": "UL/FM",
+        "application": "clean_agent"
+      },
+      "price_sar": 10545,
+      "certifications": ["UL", "FM"],
+      "notes": "أسطوانة غاز إطفاء نظيف 16 كجم - سعر شامل"
+    },
+    {
+      "model": "HITECH-FM200-22KG",
+      "type": "fm200_cylinder",
+      "type_ar": "أسطوانة FM-200 - 22 كجم",
+      "specs": {
+        "manufacturer": "HI-TECH",
+        "gas_type": "FM-200",
+        "capacity_kg": 22,
+        "certification": "UL/FM"
+      },
+      "price_sar": 12765,
+      "certifications": ["UL", "FM"],
+      "notes": "أسطوانة غاز إطفاء نظيف 22 كجم - سعر شامل"
+    },
+    {
+      "model": "HITECH-FM200-40KG",
+      "type": "fm200_cylinder",
+      "type_ar": "أسطوانة FM-200 - 40 كجم",
+      "specs": {
+        "manufacturer": "HI-TECH",
+        "gas_type": "FM-200",
+        "capacity_kg": 40,
+        "certification": "UL/FM"
+      },
+      "price_sar": 15540,
+      "certifications": ["UL", "FM"],
+      "notes": "أسطوانة غاز إطفاء نظيف 40 كجم - سعر شامل"
+    },
+    {
+      "model": "HITECH-FM200-50KG",
+      "type": "fm200_cylinder",
+      "type_ar": "أسطوانة FM-200 - 50 كجم",
+      "specs": {
+        "manufacturer": "HI-TECH",
+        "gas_type": "FM-200",
+        "capacity_kg": 50,
+        "certification": "UL/FM"
+      },
+      "price_sar": 17205,
+      "certifications": ["UL", "FM"],
+      "notes": "أسطوانة غاز إطفاء نظيف 50 كجم - سعر شامل"
+    }
+  ]
+}
