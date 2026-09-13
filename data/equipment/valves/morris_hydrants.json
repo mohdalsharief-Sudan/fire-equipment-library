@@ -1,0 +1,21 @@
+{
+  "category": "valves",
+  "category_ar": "صنابير الإطفاء - Morris",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "MORRIS-HYDRANT-6",
+      "type": "fire_hydrant",
+      "type_ar": "صنبور إطفاء خارجي 6\"",
+      "specs": {
+        "manufacturer": "Morris",
+        "size_inch": 6,
+        "outlets": "4x2.5x2.5",
+        "application": "external_hydrant"
+      },
+      "price_sar": 7326,
+      "certifications": ["UL", "FM"],
+      "notes": "صنبور إطفاء خارجي مع الملحقات - سعر شامل"
+    }
+  ]
+}

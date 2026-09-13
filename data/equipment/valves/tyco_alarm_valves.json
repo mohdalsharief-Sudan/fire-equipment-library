@@ -1,0 +1,36 @@
+{
+  "category": "valves",
+  "category_ar": "محابس إنذار TYCO",
+  "equipment": [
+    {
+      "model": "TYCO-ALARM-VALVE-8-H",
+      "type": "alarm_check_valve",
+      "type_ar": "محبس إنذار ميكانيكي أفقي 8\"",
+      "specs": {
+        "manufacturer": "TYCO",
+        "size_inch": 8,
+        "orientation": "horizontal",
+        "type": "mechanical"
+      },
+      "price_sar": 6605,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب"
+    },
+    {
+      "model": "TYCO-ALARM-VALVE-8-V",
+      "type": "alarm_check_valve",
+      "type_ar": "محبس إنذار ميكانيكي رأسي 8\"",
+      "specs": {
+        "manufacturer": "TYCO",
+        "size_inch": 8,
+        "orientation": "vertical",
+        "type": "mechanical"
+      },
+      "price_sar": 7326,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب"
+    }
+  ]
+}

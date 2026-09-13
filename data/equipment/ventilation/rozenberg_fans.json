@@ -1,0 +1,125 @@
+{
+  "category": "ventilation",
+  "category_ar": "أنظمة التهوية وسحب الدخان - Rozenberg",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "ROZ-SMOKE-30000",
+      "type": "smoke_exhaust_fan",
+      "type_ar": "مروحة سحب دخان - 30,000 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm": 30000,
+        "temperature_resistance_c": 300,
+        "duration_hours": 2,
+        "application": "smoke_exhaust"
+      },
+      "price_sar": 37000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "تحمل 300 درجة لمدة ساعتين - سعر شامل"
+    },
+    {
+      "model": "ROZ-SMOKE-20000",
+      "type": "smoke_exhaust_fan",
+      "type_ar": "مروحة سحب دخان - 20,000 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm": 20000,
+        "temperature_resistance_c": 300,
+        "duration_hours": 2,
+        "application": "smoke_exhaust"
+      },
+      "price_sar": 23000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "تحمل 300 درجة لمدة ساعتين - سعر شامل"
+    },
+    {
+      "model": "ROZ-SMOKE-18400-11050",
+      "type": "smoke_exhaust_fan_dual_speed",
+      "type_ar": "مروحة سحب دخان - سرعتين - 18,400/11,050 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm_high": 18400,
+        "cfm_low": 11050,
+        "speed": "dual",
+        "temperature_resistance_c": 300,
+        "duration_hours": 2,
+        "application": "smoke_exhaust"
+      },
+      "price_sar": 21500,
+      "certifications": ["UL", "NFPA"],
+      "notes": "سرعتين - تحمل 300 درجة لمدة ساعتين - سعر شامل"
+    },
+    {
+      "model": "ROZ-SMOKE-22660-13600",
+      "type": "smoke_exhaust_fan_dual_speed",
+      "type_ar": "مروحة سحب دخان - سرعتين - 22,660/13,600 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm_high": 22660,
+        "cfm_low": 13600,
+        "speed": "dual",
+        "temperature_resistance_c": 300,
+        "duration_hours": 2,
+        "application": "smoke_exhaust"
+      },
+      "price_sar": 25500,
+      "certifications": ["UL", "NFPA"],
+      "notes": "سرعتين - تحمل 300 درجة لمدة ساعتين - سعر شامل"
+    },
+    {
+      "model": "ROZ-VENT-17000",
+      "type": "ventilation_fan",
+      "type_ar": "مروحة تهوية نقية - 17,000 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm": 17000,
+        "application": "clean_ventilation"
+      },
+      "price_sar": 20000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "مروحة تهوية نقية - سعر شامل"
+    },
+    {
+      "model": "ROZ-VENT-19000-11400",
+      "type": "ventilation_fan_dual_speed",
+      "type_ar": "مروحة تهوية - سرعتين - 19,000/11,400 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm_high": 19000,
+        "cfm_low": 11400,
+        "speed": "dual",
+        "application": "clean_ventilation"
+      },
+      "price_sar": 20000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "مروحة تهوية نقية سرعتين - سعر شامل"
+    },
+    {
+      "model": "ROZ-STAIR-PRESS-26000",
+      "type": "stairwell_pressurization_fan",
+      "type_ar": "مروحة تضغيط سلالم طوارئ - 26,000 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm": 26000,
+        "application": "stairwell_pressurization"
+      },
+      "price_sar": 34000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "مروحة تضغيط سلالم طوارئ - سعر شامل"
+    },
+    {
+      "model": "ROZ-ELEV-PRESS-25000",
+      "type": "elevator_pressurization_fan",
+      "type_ar": "مروحة تضغيط آبار مصاعد - 25,000 CFM",
+      "specs": {
+        "manufacturer": "Rozenberg",
+        "cfm": 25000,
+        "application": "elevator_pressurization"
+      },
+      "price_sar": 33000,
+      "certifications": ["UL", "NFPA"],
+      "notes": "مروحة تضغيط آبار مصاعد - سعر شامل"
+    }
+  ]
+}

@@ -2,13 +2,7 @@
   "category": "sprinklers",
   "category_ar": "الرشاشات المعتمدة UL/FM",
   "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"],
-  "brand_price_factors": {
-    "Tyco": 1.0,
-    "Viking": 1.1,
-    "Globe": 1.0,
-    "Lifeco": 1.0,
-    "Reliable": 1.0
-  },
+  "pricing_note": "الأسعار = سعر المورد × 1.35 (تركيب + ربح)",
   "equipment": [
     {
       "model": "SPR-K56-UPRIGHT",
@@ -20,15 +14,13 @@
         "thread": "1/2\" NPT",
         "orientation": "upright",
         "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "OH1, OH2, Light Hazard",
-        "usable_in": ["مكاتب مكشوفة", "مستودعات خفيفة", "مواقف سيارات"],
         "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"]
       },
-      "price_sar": 18,
+      "price_sar": 0,
+      "supplier_price": 18,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "السعر الأساسي (Tyco). Viking +10%"
+      "notes": "سعر المورد 18 × 1.35 = 24.30 ريال"
     },
     {
       "model": "SPR-K56-PENDENT",
@@ -40,15 +32,13 @@
         "thread": "1/2\" NPT",
         "orientation": "pendent",
         "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "OH1, OH2, Light Hazard",
-        "usable_in": ["مكاتب بأسقف مستعارة", "محلات تجارية", "شقق سكنية"],
         "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"]
       },
-      "price_sar": 35,
+      "price_sar": 0,
+      "supplier_price": 35,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "السعر الأساسي (Tyco). Viking +10%"
+      "notes": "سعر المورد 35 × 1.35 = 47.25 ريال"
     },
     {
       "model": "SPR-K56-PENDENT-QR",
@@ -60,15 +50,13 @@
         "thread": "1/2\" NPT",
         "orientation": "pendent",
         "response": "quick",
-        "bulb_size_mm": 3,
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "Light Hazard, Residential",
-        "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"]
+        "bulb_size_mm": 3
       },
-      "price_sar": 40,
+      "price_sar": 0,
+      "supplier_price": 40,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش سريع الاستجابة (QR)"
+      "notes": "سعر المورد 40 × 1.35 = 54 ريال"
     },
     {
       "model": "SPR-K56-CONCEALED",
@@ -80,16 +68,13 @@
         "thread": "1/2\" NPT",
         "orientation": "concealed_pendent",
         "response": "quick",
-        "cover_plate_finish": ["Chrome", "White", "Brass"],
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "Architectural Spaces",
-        "usable_in": ["فنادق", "مكاتب فاخرة", "معارض"],
-        "available_brands": ["Tyco", "Viking"]
+        "cover_plate_finish": ["Chrome", "White", "Brass"]
       },
-      "price_sar": 60,
+      "price_sar": 0,
+      "supplier_price": 60,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش مخفي بغطاء جمالي"
+      "notes": "سعر المورد 60 × 1.35 = 81 ريال"
     },
     {
       "model": "SPR-K56-SIDEWALL",
@@ -100,16 +85,13 @@
         "k_metric": 80,
         "thread": "1/2\" NPT",
         "orientation": "horizontal_sidewall",
-        "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "Corridors, Small Rooms",
-        "usable_in": ["ممرات", "غرف صغيرة"],
-        "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"]
+        "response": "standard"
       },
-      "price_sar": 45,
+      "price_sar": 0,
+      "supplier_price": 45,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش جانبي للممرات"
+      "notes": "سعر المورد 45 × 1.35 = 60.75 ريال"
     },
     {
       "model": "SPR-K80-UPRIGHT",
@@ -120,16 +102,13 @@
         "k_metric": 115,
         "thread": "1/2\" NPT",
         "orientation": "upright",
-        "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "OH2, EH1",
-        "usable_in": ["مخازن", "مصانع خفيفة"],
-        "available_brands": ["Tyco", "Viking", "Globe", "Lifeco", "Reliable"]
+        "response": "standard"
       },
-      "price_sar": 35,
+      "price_sar": 0,
+      "supplier_price": 35,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش قائم K8.0"
+      "notes": "سعر المورد 35 × 1.35 = 47.25 ريال"
     },
     {
       "model": "SPR-K112-UPRIGHT",
@@ -140,16 +119,13 @@
         "k_metric": 160,
         "thread": "3/4\" NPT",
         "orientation": "upright",
-        "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "EH1, EH2, Storage",
-        "usable_in": ["مخازن عالية", "مصانع"],
-        "available_brands": ["Tyco", "Viking", "Globe", "Reliable"]
+        "response": "standard"
       },
-      "price_sar": 65,
+      "price_sar": 0,
+      "supplier_price": 65,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش K11.2 للمخاطر العالية"
+      "notes": "سعر المورد 65 × 1.35 = 87.75 ريال"
     },
     {
       "model": "SPR-K140-UPRIGHT",
@@ -160,16 +136,13 @@
         "k_metric": 200,
         "thread": "3/4\" NPT",
         "orientation": "upright",
-        "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "EH2, Storage",
-        "usable_in": ["مخازن كبيرة", "مستودعات صناعية"],
-        "available_brands": ["Tyco", "Viking", "Reliable"]
+        "response": "standard"
       },
-      "price_sar": 90,
+      "price_sar": 0,
+      "supplier_price": 90,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش K14.0 للمخازن الكبيرة"
+      "notes": "سعر المورد 90 × 1.35 = 121.50 ريال"
     },
     {
       "model": "SPR-ESFR-K140",
@@ -180,16 +153,13 @@
         "k_metric": 200,
         "thread": "3/4\" NPT",
         "orientation": "pendent",
-        "response": "esfr",
-        "max_pressure_bar": 12,
-        "temperature_c": 74,
-        "application": "Storage - ESFR",
-        "usable_in": ["مستودعات عالية", "مراكز توزيع"],
-        "available_brands": ["Tyco", "Viking"]
+        "response": "esfr"
       },
-      "price_sar": 250,
+      "price_sar": 0,
+      "supplier_price": 250,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش ESFR للتخزين الفوري"
+      "notes": "سعر المورد 250 × 1.35 = 337.50 ريال"
     },
     {
       "model": "SPR-K168-UPRIGHT",
@@ -200,16 +170,13 @@
         "k_metric": 240,
         "thread": "1\" NPT",
         "orientation": "upright",
-        "response": "standard",
-        "max_pressure_bar": 12,
-        "temperature_c": 68,
-        "application": "Storage - High Piled",
-        "usable_in": ["مستودعات ضخمة"],
-        "available_brands": ["Tyco", "Viking"]
+        "response": "standard"
       },
-      "price_sar": 120,
+      "price_sar": 0,
+      "supplier_price": 120,
+      "price_type": "supply_only",
       "certifications": ["UL", "FM"],
-      "notes": "رشاش K16.8 للمخازن الضخمة"
+      "notes": "سعر المورد 120 × 1.35 = 162 ريال"
     }
   ]
 }

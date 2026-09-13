@@ -1,0 +1,47 @@
+{
+  "category": "architectural_safety",
+  "category_ar": "السلامة المعمارية - KHIND",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "KHIND-EMERGENCY-LED",
+      "type": "emergency_light",
+      "type_ar": "لمبة إنارة طوارئ LED مع بطارية",
+      "specs": {
+        "manufacturer": "KHIND",
+        "type": "LED",
+        "battery_backup": true,
+        "application": "emergency_lighting"
+      },
+      "price_sar": 195,
+      "certifications": ["SASO"],
+      "notes": "إنارة طوارئ LED مع بطارية - سعر شامل"
+    },
+    {
+      "model": "KHIND-EXIT-SIGN-DOUBLE",
+      "type": "exit_sign",
+      "type_ar": "علامة خروج احتياطية (وجهين)",
+      "specs": {
+        "manufacturer": "KHIND",
+        "type": "double_sided",
+        "application": "emergency_exit"
+      },
+      "price_sar": 205,
+      "certifications": ["SASO"],
+      "notes": "لوحة مخرج طوارئ وجهين - سعر شامل"
+    },
+    {
+      "model": "KHIND-EXIT-SIGN-DIRECTIONAL",
+      "type": "exit_sign_directional",
+      "type_ar": "علامة خروج اتجاهية",
+      "specs": {
+        "manufacturer": "KHIND",
+        "type": "directional",
+        "application": "emergency_exit"
+      },
+      "price_sar": 225,
+      "certifications": ["SASO"],
+      "notes": "لوحة مخرج طوارئ اتجاهية - سعر شامل"
+    }
+  ]
+}

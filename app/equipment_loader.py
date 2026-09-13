@@ -51,9 +51,24 @@ class EquipmentLoader:
             # استخراج الحقول الجديدة
             price_type = item.get('price_type', 'supply_and_install')
             supplier_price = item.get('supplier_price', 0)
+            final_price = item.get('price_sar', 0)
             
-            # إذا كان السعر "supply_only" نحسب السعر النهائي
-            # (هذا اختياري - يمكن تركه كما هو)
+            # ========== قاعدة التسعير التلقائية ==========
+            if supplier_price > 0:
+                # رشاشات → × 1.35
+                if 'sprinkler' in item.get('type', '').lower():
+                    final_price = round(supplier_price * 1.35, 2)
+                    logger.debug(f"   [Sprinkler] {item['model']}: {supplier_price} × 1.35 = {final_price}")
+                # Simplex مع price_type=supply_only → +375 أو +5,000
+                elif price_type == 'supply_only':
+                    if 'panel' in item.get('type', '').lower() or \
+                       'repeater' in item.get('type', '').lower():
+                        final_price = supplier_price + 5000
+                    else:
+                        final_price = supplier_price + 375
+                else:
+                    final_price = supplier_price
+            # ============================================
             
             self.db.add_equipment(
                 manufacturer_id=manufacturer_id,
@@ -61,7 +76,7 @@ class EquipmentLoader:
                 model=item['model'],
                 type_=item.get('type', ''),
                 specs=item.get('specs', {}),
-                price_sar=item.get('price_sar', 0),
+                price_sar=final_price,
                 certifications=item.get('certifications', []),
                 applications=item.get('applications', []),
                 notes=item.get('notes', ''),

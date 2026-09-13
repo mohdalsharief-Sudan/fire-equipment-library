@@ -1,0 +1,21 @@
+{
+  "category": "valves",
+  "category_ar": "محابس الحريق - Giacomini",
+  "price_note": "الأسعار شاملة التوريد والتركيب",
+  "equipment": [
+    {
+      "model": "GIACOMINI-ANGEL-PRV",
+      "type": "hose_valve_prv",
+      "type_ar": "محبس حريق Angel مع تخفيض ضغط",
+      "specs": {
+        "manufacturer": "Giacomini",
+        "type": "angel",
+        "prv": true,
+        "application": "hose_valve"
+      },
+      "price_sar": 777,
+      "certifications": ["UL", "FM"],
+      "notes": "محبس حريق Angel مدمج مع PRV - سعر شامل"
+    }
+  ]
+}
