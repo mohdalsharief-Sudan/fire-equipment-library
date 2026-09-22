@@ -62,6 +62,11 @@ def main():
                 count = loader.load_equipment_file(file_path, category, naffco_id)
                 logger.info(f"   ✅ {rel_path}: {count}")
     
+    # NAFFCO - Real Pumps (عروض حقيقية)
+    naffco_real = os.path.join(base_dir, 'data', 'equipment', 'pumps', 'naffco_real_pumps.json')
+    if os.path.exists(naffco_real):
+            count = loader.load_equipment_file(naffco_real, 'pumps/package_units', naffco_id)
+            logger.info(f"   ✅ NAFFCO Real Pumps: {count}")
     # ============ الرشاشات ============
     print("\n📦 تحميل الرشاشات...")
     

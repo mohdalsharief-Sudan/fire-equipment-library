@@ -48,24 +48,31 @@ class EquipmentLoader:
         
         count = 0
         for item in data.get('equipment', []):
-            # استخراج الحقول الجديدة
+            # استخراج الحقول
             price_type = item.get('price_type', 'supply_and_install')
             supplier_price = item.get('supplier_price', 0)
             final_price = item.get('price_sar', 0)
+            item_type = item.get('type', '').lower()  # ← السطر المفقود!
             
             # ========== قاعدة التسعير التلقائية ==========
             if supplier_price > 0:
                 # رشاشات → × 1.35
-                if 'sprinkler' in item.get('type', '').lower():
+                if 'sprinkler' in item_type:
                     final_price = round(supplier_price * 1.35, 2)
                     logger.debug(f"   [Sprinkler] {item['model']}: {supplier_price} × 1.35 = {final_price}")
+                
+                # مضخات توريد فقط → × 1.075
+                elif 'pump' in item_type and price_type == 'supply_only':
+                    final_price = round(supplier_price * 1.075, 2)
+                    logger.debug(f"   [Pump] {item['model']}: {supplier_price} × 1.075 = {final_price}")
+                
                 # Simplex مع price_type=supply_only → +375 أو +5,000
                 elif price_type == 'supply_only':
-                    if 'panel' in item.get('type', '').lower() or \
-                       'repeater' in item.get('type', '').lower():
+                    if 'panel' in item_type or 'repeater' in item_type:
                         final_price = supplier_price + 5000
                     else:
                         final_price = supplier_price + 375
+                
                 else:
                     final_price = supplier_price
             # ============================================

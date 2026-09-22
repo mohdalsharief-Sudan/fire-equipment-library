@@ -1,0 +1,54 @@
+{
+  "category": "pumps/package_units",
+  "category_ar": "مجموعات مضخات NAFFCO - عروض حقيقية",
+  "price_note": "الأسعار = سعر مورد × 1.075 (تركيب وربح 7.5%)",
+  "equipment": [
+    {
+      "model": "NAFFCO-HSC-1500-1E1D1J",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات حريق - Split Case - 1500 GPM @ 130 PSI",
+      "specs": {
+        "manufacturer": "NAFFCO",
+        "pump_type": "Horizontal Split Case",
+        "configuration": "1 Electric + 1 Diesel + 1 Jockey",
+        "rated_flow_gpm": 1500,
+        "rated_pressure_psi": 130,
+        "rated_pressure_bar": 8.96,
+        "jockey_pump": {
+          "type": "Vertical Multistage",
+          "flow_gpm": 45,
+          "pressure_psi": 135
+        },
+        "electric_motor": "ODP Motor",
+        "diesel_engine": "Diesel Engine",
+        "electric_controller": "NAFFCO Y-Delta Open Transition, NEMA 2",
+        "diesel_controller": "NAFFCO, NEMA 2",
+        "jockey_controller": "NAFFCO, NEMA 2",
+        "project": "SPARK City - Workers Accommodation Compound",
+        "project_ref": "NAFF-KSA-2739",
+        "quote_date": "2024-05-15",
+        "client": "OSOS AL-SALAMAH EST",
+        "consultant": "IMPCAL",
+        "location": "Riyadh, KSA",
+        "not_included": [
+          "Installation",
+          "Pump room valves & fittings",
+          "Flow meter",
+          "Pump room piping",
+          "Engineering & shop drawings",
+          "VAT (15%)"
+        ]
+      },
+      "price_sar": 322500,
+      "price_type": "supply_only",
+      "supplier_price": 300000,
+      "certifications": ["UL", "FM"],
+      "applications": [
+        "Workers Accommodation",
+        "Industrial Facilities",
+        "Large Buildings"
+      ],
+      "notes": "عرض SPARK City 2024 - سعر مورد 300,000 × 1.075 = 322,500 ريال"
+    }
+  ]
+}
