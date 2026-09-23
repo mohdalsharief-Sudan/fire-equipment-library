@@ -30,7 +30,7 @@ class EquipmentDatabase:
         """إنشاء الجداول"""
         cursor = self.conn.cursor()
         
-        # المصنعون
+        # ========== 1. المصنعون ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS manufacturers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +44,7 @@ class EquipmentDatabase:
             )
         """)
         
-        # الفئات
+        # ========== 2. الفئات ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS categories (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,7 +56,7 @@ class EquipmentDatabase:
             )
         """)
         
-        # المعدات
+        # ========== 3. المعدات ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS equipment (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -83,9 +83,9 @@ class EquipmentDatabase:
                 FOREIGN KEY (manufacturer_id) REFERENCES manufacturers(id),
                 FOREIGN KEY (category_id) REFERENCES categories(id)
             )
-                    """)
+        """)
         
-        # سجل الأسعار
+        # ========== 4. سجل الأسعار ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS price_history (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -97,8 +97,7 @@ class EquipmentDatabase:
             )
         """)
         
-        # فهارس
-        # ========== العملاء ==========
+        # ========== 5. العملاء ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS clients (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -112,7 +111,7 @@ class EquipmentDatabase:
             )
         """)
         
-        # ========== المشاريع ==========
+        # ========== 6. المشاريع ==========
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS projects (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -136,20 +135,47 @@ class EquipmentDatabase:
             )
         """)
         
-        # فهارس
-        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_client ON projects(client_id)")
-        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_name ON projects(project_name)")
+        # ========== 7. بنود المشاريع ==========
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS project_items (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                project_id INTEGER,
+                sheet_name TEXT,
+                division TEXT,
+                section TEXT,
+                description TEXT NOT NULL,
+                unit TEXT,
+                quantity REAL DEFAULT 0,
+                selling_price REAL DEFAULT 0,
+                supply_price REAL DEFAULT 0,
+                labour_price REAL DEFAULT 0,
+                accessories REAL DEFAULT 0,
+                total_cost REAL DEFAULT 0,
+                profit_per_unit REAL DEFAULT 0,
+                category TEXT,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (project_id) REFERENCES projects(id)
+            )
+        """)
         
-        # ========== فهارس المعدات ==========
-        cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_model ON equipment(model)")
+        # ========== 8. الفهارس ==========
+        # المعدات
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_model ON equipment(model)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_type ON equipment(type)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_mfr ON equipment(manufacturer_id)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_eq_cat ON equipment(category_id)")
         
+        # المشاريع
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_client ON projects(client_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_proj_name ON projects(project_name)")
+        
+        # بنود المشاريع
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_pi_project ON project_items(project_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_pi_category ON project_items(category)")
+        
         self.conn.commit()
         logger.info(f"✅ تم إنشاء قاعدة البيانات: {self.db_path}")
-    
+        
     def add_manufacturer(self, name: str, name_ar: str = "", country: str = "",
                         website: str = "", certifications: List[str] = None) -> int:
         """إضافة مصنع"""
@@ -370,6 +396,100 @@ class EquipmentDatabase:
             WHERE equipment_id = ?
             ORDER BY changed_at DESC
         """, (equipment_id,))
+        return [dict(row) for row in cursor.fetchall()]
+        # ========== بنود المشاريع ==========
+    
+    def add_project_item(self, project_id: int, item_data: dict) -> int:
+        """إضافة بند لمشروع"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            INSERT INTO project_items 
+            (project_id, sheet_name, division, section, description,
+             unit, quantity, selling_price, supply_price, labour_price,
+             accessories, total_cost, profit_per_unit, category)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            project_id,
+            item_data.get('sheet_name', ''),
+            item_data.get('division', ''),
+            item_data.get('section', ''),
+            item_data.get('description', ''),
+            item_data.get('unit', ''),
+            item_data.get('quantity', 0),
+            item_data.get('selling_price', 0),
+            item_data.get('supply_price', 0),
+            item_data.get('labour_price', 0),
+            item_data.get('accessories', 0),
+            item_data.get('total_cost', 0),
+            item_data.get('profit_per_unit', 0),
+            item_data.get('category', ''),
+        ))
+        self.conn.commit()
+        return cursor.lastrowid
+    
+    def list_project_items(self, project_id: int = None, category: str = None) -> List[Dict]:
+        """قائمة بنود المشاريع"""
+        cursor = self.conn.cursor()
+        query = "SELECT * FROM project_items WHERE 1=1"
+        params = []
+        
+        if project_id:
+            query += " AND project_id = ?"
+            params.append(project_id)
+        
+        if category:
+            query += " AND category = ?"
+            params.append(category)
+        
+        query += " ORDER BY sheet_name, id"
+        cursor.execute(query, params)
+        return [dict(row) for row in cursor.fetchall()]
+    
+    def get_project_items_count(self) -> int:
+        """عدد بنود المشاريع"""
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM project_items")
+        return cursor.fetchone()[0]
+    
+    def get_project_items_stats(self, project_id: int = None) -> Dict:
+        """إحصائيات بنود المشاريع"""
+        cursor = self.conn.cursor()
+        
+        where = ""
+        params = []
+        if project_id:
+            where = "WHERE project_id = ?"
+            params.append(project_id)
+        
+        cursor.execute(f"""
+            SELECT 
+                COUNT(*) as count,
+                COALESCE(SUM(quantity * selling_price), 0) as total_selling,
+                COALESCE(SUM(quantity * total_cost), 0) as total_cost,
+                COALESCE(SUM(quantity * profit_per_unit), 0) as total_profit
+            FROM project_items
+            {where}
+        """, params)
+        row = cursor.fetchone()
+        return dict(row) if row else {}
+    
+    def get_project_items_categories(self, project_id: int = None) -> List[Dict]:
+        """تصنيفات بنود المشاريع"""
+        cursor = self.conn.cursor()
+        
+        where = ""
+        params = []
+        if project_id:
+            where = "WHERE project_id = ?"
+            params.append(project_id)
+        
+        cursor.execute(f"""
+            SELECT category, COUNT(*) as count
+            FROM project_items
+            {where}
+            GROUP BY category
+            ORDER BY count DESC
+        """, params)
         return [dict(row) for row in cursor.fetchall()]
     
     def close(self):
