@@ -1,0 +1,291 @@
+{
+  "category": "pumps/package_units",
+  "category_ar": "مجموعات مضخات DFS/SMI - عروض حقيقية",
+  "price_note": "الأسعار شاملة التوريد والتركيب والمحابس والأنابيب والربح",
+  "equipment": [
+    {
+      "model": "SMI-HSC-1000-18",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات Split Case - 1000 GPM @ 18 bar",
+      "specs": {
+        "manufacturer": "SMI",
+        "pump_type": "Horizontal Split Case",
+        "rated_flow_gpm": 1000,
+        "rated_pressure_bar": 18,
+        "rated_pressure_psi": 261,
+        "certifications": ["UL", "FM"],
+        "project": "برج طويق PM1",
+        "client": "شركة المهيدب",
+        "includes": ["Valves", "Pipes", "Installation", "Profit"]
+      },
+      "price_sar": 388500,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب - برج طويق PM1"
+    },
+    {
+      "model": "SMI-ESC-750-10",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات End Suction - 750 GPM @ 10 bar",
+      "specs": {
+        "manufacturer": "SMI",
+        "pump_type": "End Suction",
+        "rated_flow_gpm": 750,
+        "rated_pressure_bar": 10,
+        "rated_pressure_psi": 145,
+        "project": "برج طويق PM2",
+        "client": "شركة المهيدب",
+        "includes": ["Valves", "Pipes", "Installation", "Profit"]
+      },
+      "price_sar": 266400,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب - برج طويق PM2"
+    },
+    {
+      "model": "ASS-150-10-6P",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات 6 مضخات - 150 GPM @ 10 bar",
+      "specs": {
+        "manufacturer": "مؤسسة أسس السلامة",
+        "pump_count": 6,
+        "rated_flow_gpm": 150,
+        "rated_pressure_bar": 10,
+        "project": "المباني الإدارية بمدينة الباحة",
+        "client": "الأستاذ أنيس ناصر",
+        "includes": ["Diesel", "Electric", "Jockey", "Controllers", "Installation"]
+      },
+      "price_sar": 200000,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "طقم 6 مضخات - ديزل + كهرباء - شامل التوريد والتركيب"
+    },
+    {
+      "model": "ASS-250-10-6P",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات 6 مضخات - 250 GPM @ 10 bar",
+      "specs": {
+        "manufacturer": "مؤسسة أسس السلامة",
+        "pump_count": 6,
+        "rated_flow_gpm": 250,
+        "rated_pressure_bar": 10,
+        "project": "المباني الإدارية بمدينة الباحة",
+        "client": "الأستاذ أنيس ناصر"
+      },
+      "price_sar": 245000,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "طقم 6 مضخات - ديزل + كهرباء - شامل التوريد والتركيب"
+    },
+    {
+      "model": "ASS-500-10-6P",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات 6 مضخات - 500 GPM @ 10 bar",
+      "specs": {
+        "manufacturer": "مؤسسة أسس السلامة",
+        "pump_count": 6,
+        "rated_flow_gpm": 500,
+        "rated_pressure_bar": 10,
+        "project": "المباني الإدارية بمدينة الباحة",
+        "client": "الأستاذ أنيس ناصر"
+      },
+      "price_sar": 490000,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "طقم 6 مضخات - ديزل + كهرباء - شامل التوريد والتركيب"
+    },
+    {
+      "model": "ANC-HSC-750-12",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات Split Case - 750 GPM @ 12 bar",
+      "specs": {
+        "manufacturer": "ANC (Al Nahdi)",
+        "pump_type": "Horizontal Split Case",
+        "rated_flow_gpm": 750,
+        "rated_pressure_bar": 12,
+        "rated_pressure_psi": 174,
+        "project": "برج الأعمال 2 - الملز",
+        "client": "CPV Arabia",
+        "includes": ["Electric", "Diesel", "Installation"]
+      },
+      "price_sar": 155800,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "سعر شامل التوريد والتركيب - برج الأعمال 2"
+    },
+    {
+      "model": "SPLIT-500-8.61-E",
+      "type": "fire_pump_electric",
+      "type_ar": "مضخة حريق كهربائية أفقية - 500 GPM @ 125 PSI",
+      "specs": {
+        "manufacturer": "معتمد UL/FM",
+        "pump_type": "Horizontal Split Case",
+        "driver": "Electric",
+        "rated_flow_gpm": 500,
+        "rated_pressure_psi": 125,
+        "rated_pressure_bar": 8.61,
+        "project": "تحلية المياه بالباحة",
+        "client": "شركة الأمان للمقاولات"
+      },
+      "price_sar": 86100,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة كهربائية - شامل التوريد والتركيب"
+    },
+    {
+      "model": "SPLIT-500-8.61-D",
+      "type": "fire_pump_diesel",
+      "type_ar": "مضخة حريق ديزل أفقية - 500 GPM @ 125 PSI",
+      "specs": {
+        "manufacturer": "معتمد UL/FM",
+        "pump_type": "Horizontal Split Case",
+        "driver": "Diesel",
+        "rated_flow_gpm": 500,
+        "rated_pressure_psi": 125,
+        "rated_pressure_bar": 8.61,
+        "project": "تحلية المياه بالباحة"
+      },
+      "price_sar": 99480,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة ديزل - شامل التوريد والتركيب"
+    },
+    {
+      "model": "JOCKEY-25-8.96",
+      "type": "jockey_pump",
+      "type_ar": "مضخة جوكي - 25 GPM @ 130 PSI",
+      "specs": {
+        "manufacturer": "معتمد UL/FM",
+        "pump_type": "Vertical Multistage",
+        "rated_flow_gpm": 25,
+        "rated_pressure_psi": 130,
+        "rated_pressure_bar": 8.96,
+        "project": "تحلية المياه بالباحة"
+      },
+      "price_sar": 14700,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة جوكي - شامل التوريد والتركيب"
+    },
+    {
+      "model": "SPLIT-400-8.27-E",
+      "type": "fire_pump_electric",
+      "type_ar": "مضخة كهربائية أفقية - 400 GPM @ 120 PSI",
+      "specs": {
+        "manufacturer": "مؤسسة رئال",
+        "pump_type": "Horizontal Split Case",
+        "driver": "Electric",
+        "rated_flow_gpm": 400,
+        "rated_pressure_psi": 120,
+        "rated_pressure_bar": 8.27,
+        "project": "الشركة الكيميائية الحديثة"
+      },
+      "price_sar": 143500,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة كهربائية - شامل التوريد والتركيب"
+    },
+    {
+      "model": "SPLIT-400-8.27-D",
+      "type": "fire_pump_diesel",
+      "type_ar": "مضخة ديزل أفقية - 400 GPM @ 120 PSI",
+      "specs": {
+        "manufacturer": "مؤسسة رئال",
+        "pump_type": "Horizontal Split Case",
+        "driver": "Diesel",
+        "rated_flow_gpm": 400,
+        "rated_pressure_psi": 120,
+        "rated_pressure_bar": 8.27,
+        "project": "الشركة الكيميائية الحديثة"
+      },
+      "price_sar": 165800,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة ديزل - شامل التوريد والتركيب"
+    },
+    {
+      "model": "JOCKEY-25-8.96-R",
+      "type": "jockey_pump",
+      "type_ar": "مضخة جوكي - 25 GPM @ 130 PSI",
+      "specs": {
+        "manufacturer": "مؤسسة رئال",
+        "pump_type": "Vertical Multistage",
+        "rated_flow_gpm": 25,
+        "rated_pressure_psi": 130,
+        "rated_pressure_bar": 8.96,
+        "project": "الشركة الكيميائية الحديثة"
+      },
+      "price_sar": 24500,
+      "price_type": "supply_and_install",
+      "certifications": ["UL", "FM"],
+      "notes": "مضخة جوكي - شامل التوريد والتركيب"
+    },
+    {
+      "model": "PKG-500-7-ED",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات (كهرباء + ديزل) - 500 GPM @ 7 bar",
+      "specs": {
+        "manufacturer": "معتمد الدفاع المدني",
+        "rated_flow_gpm": 500,
+        "rated_pressure_bar": 7,
+        "configuration": "Electric + Diesel",
+        "project": "مجمع عذوق السكني",
+        "client": "شركة المسكن الميسر"
+      },
+      "price_sar": 85500,
+      "price_type": "supply_and_install",
+      "certifications": ["SASO"],
+      "notes": "معتمد الدفاع المدني - شامل التوريد والتركيب"
+    },
+    {
+      "model": "PKG-500-7-NON-UL",
+      "type": "fire_pump_package",
+      "type_ar": "مجموعة مضخات حريق مجمعة - 500 GPM @ 7 bar",
+      "specs": {
+        "manufacturer": "Non-UL Listed",
+        "rated_flow_gpm": 500,
+        "rated_pressure_bar": 7,
+        "configuration": "Electric + Diesel + Jockey",
+        "project": "مستودعات ناصر البداح",
+        "client": "مستودعات ناصر البداح (حي السلي)"
+      },
+      "price_sar": 48800,
+      "price_type": "supply_and_install",
+      "certifications": [],
+      "notes": "غير معتمد UL - شامل التوريد والتركيب - اقتصادي"
+    },
+    {
+      "model": "PKG-500-7-ED-R",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات (كهرباء + ديزل) - 500 GPM @ 7 bar",
+      "specs": {
+        "manufacturer": "مؤسسة رئال الدولية",
+        "rated_flow_gpm": 500,
+        "rated_pressure_bar": 7,
+        "configuration": "Electric + Diesel",
+        "project": "مشروع عمارة تجارية"
+      },
+      "price_sar": 45000,
+      "price_type": "supply_and_install",
+      "certifications": ["SASO"],
+      "notes": "شامل التوريد والتركيب - مؤسسة رئال"
+    },
+    {
+      "model": "PKG-500-7-EJ",
+      "type": "fire_pump_package",
+      "type_ar": "طقم مضخات (كهرباء + جوكي) - 500 GPM @ 7 bar",
+      "specs": {
+        "manufacturer": "مؤسسة رئال الدولية",
+        "rated_flow_gpm": 500,
+        "rated_pressure_bar": 7,
+        "configuration": "Electric + Jockey",
+        "project": "حراج بن قاسم الجديد",
+        "client": "فهد أبو بدر"
+      },
+      "price_sar": 17500,
+      "price_type": "supply_and_install",
+      "certifications": ["SASO"],
+      "notes": "شامل التوريد والتركيب - اقتصادي"
+    }
+  ]
+}

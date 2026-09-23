@@ -67,6 +67,19 @@ def main():
     if os.path.exists(naffco_real):
             count = loader.load_equipment_file(naffco_real, 'pumps/package_units', naffco_id)
             logger.info(f"   ✅ NAFFCO Real Pumps: {count}")
+    
+    # ============ DFS / SMI ============
+    print("\n📦 تحميل DFS / SMI (مضخات من Excel)...")
+    
+    dfs_file = os.path.join(base_dir, 'data', 'manufacturers', 'dfs_smi.json')
+    if os.path.exists(dfs_file):
+        dfs_id = loader.load_manufacturer(dfs_file)
+        logger.info(f"✅ DFS/SMI ID: {dfs_id}")
+        
+        dfs_pumps = os.path.join(base_dir, 'data', 'equipment', 'pumps', 'dfs_smi_pumps.json')
+        if os.path.exists(dfs_pumps):
+            count = loader.load_equipment_file(dfs_pumps, 'pumps/package_units', dfs_id)
+            logger.info(f"   ✅ DFS/SMI Pumps: {count}")        
     # ============ الرشاشات ============
     print("\n📦 تحميل الرشاشات...")
     
